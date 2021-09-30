@@ -125,10 +125,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BodyPartModel.cs" />
+    <Compile Include="Models\Day_of_WeekModel.cs" />
     <Compile Include="Models\DietModel.cs" />
+    <Compile Include="Models\ExcersiseModel.cs" />
     <Compile Include="Models\InjuryModel.cs" />
     <Compile Include="Models\PTModel.cs" />
-    <Compile Include="Models\Training_schedule.cs" />
+    <Compile Include="Models\Training_scheduleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

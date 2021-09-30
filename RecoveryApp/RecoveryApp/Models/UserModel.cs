@@ -15,7 +15,7 @@ namespace RecoveryApp.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public InjuryModel Injury { get; set; }
-        public Training_schedule Training { get; set; }
+        public Training_scheduleModel Training { get; set; }
         public DietModel UserDiet { get; set; }
         public PTModel Physical_Therapist { get; set; }
 
