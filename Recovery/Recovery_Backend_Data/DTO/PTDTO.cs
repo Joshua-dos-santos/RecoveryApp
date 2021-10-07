@@ -1,4 +1,6 @@
-﻿namespace Recovery_Backend_Data.DTO
+﻿using System;
+
+namespace Recovery_Backend_Data.DTO
 {
     public class PTDTO
     {

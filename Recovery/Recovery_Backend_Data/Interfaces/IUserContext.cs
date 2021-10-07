@@ -7,8 +7,8 @@ namespace Recovery_Backend_Data.Interfaces
 {
     public interface IUserContext
     {
-        UserDTO RegisterUser(string Fname, string Lname, string email, string password, string birthdate);
+        UserDTO RegisterUser(string Fname, string Lname, int height, int weight, string email, string password, DateTime birthdate);
         UserDTO LoginUser(string email, string password);
-        UserDTO GetUserDetails(string unique_id);
+        UserDTO GetUserDetails(int unique_id);
     }
 }
