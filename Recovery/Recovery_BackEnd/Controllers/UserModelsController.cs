@@ -24,8 +24,16 @@ namespace Recovery_BackEnd.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_context.usermodel);
+            IEnumerable<string> users = _context.usermodel.ToList().Select(m => m.First_Name);
+
+                return Ok(users);
         } 
+
+        [HttpGet]
+        public IActionResult Physical_Therapists()
+        {
+            return Ok(_context.ptmodel);
+        }
     } 
 }
 

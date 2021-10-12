@@ -15,5 +15,6 @@ namespace Recovery_BackEnd.Data
         }
 
         public DbSet<Recovery_BackEnd.Models.UserModel> usermodel { get; set; }
+        public DbSet<Recovery_BackEnd.Models.PTModel> ptmodel { get; set; }
     }
 }
