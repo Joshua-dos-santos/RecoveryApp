@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Recovery_BackEnd.Models
+namespace Recovery_Models.Models
 {
-    public class DietModel
-    {   
+    public class TrainingModel
+    {
         [Key]
         public int Unique_ID { get; set; }
     }

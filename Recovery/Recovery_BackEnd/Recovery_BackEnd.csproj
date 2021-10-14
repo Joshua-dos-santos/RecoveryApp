@@ -18,4 +18,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Recovery_Backend_Data\Recovery_Backend_Data.csproj" />
+    <ProjectReference Include="..\Recovery_Models\Recovery_Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

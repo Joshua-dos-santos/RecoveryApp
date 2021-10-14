@@ -1,39 +1,51 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Recovery_Backend_Data;
+using Recovery_Backend_Data.Data;
+using Recovery_Models.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Recovery_BackEnd.Data;
-using Recovery_BackEnd.Models;
 
 namespace Recovery_BackEnd.Controllers
 {
     [Route("[controller]/[action]")]
     public class UserModelsController : Controller
     {
-        private readonly Recovery_BackEndContext _context;
+        private readonly AccountData _accountData;
 
-        public UserModelsController(Recovery_BackEndContext context)
+        public UserModelsController(RecoveryDBContext context)
         {
-            _context = context;
+            _accountData = new AccountData(context);
         }
 
-        // GET: UserModels
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> GetAllUsers()
         {
-            IEnumerable<string> users = _context.usermodel.ToList().Select(m => m.First_Name);
-
-                return Ok(users);
-        } 
-
-        [HttpGet]
-        public IActionResult Physical_Therapists()
-        {
-            return Ok(_context.ptmodel);
+            string userID = _accountData.GetUserID("test@test").Result;
+            return Ok(await _accountData.GetUser(userID));
         }
-    } 
+
+        //[HttpGet]
+        //public IActionResult Physical_Therapists()
+        //{
+        //    return Ok(_accountData.);
+        //}
+
+        [HttpPost]
+        public IActionResult AddUser()
+        {
+            var newUser = new UserModel()
+            {
+                First_Name = "Joost",
+                Last_Name = "Arens",
+                Birthdate = "2004-05-09",
+                Height = 174,
+                Weight = 64,
+                Email = "joost@arens",
+                Password = "joost2004"
+            };
+            return Ok( _accountData.AddUser(newUser));
+        }
+    }
 }
 

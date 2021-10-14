@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recovery_BackEnd", "Recovery_BackEnd\Recovery_BackEnd.csproj", "{1EA06F0E-FC20-458E-8ECD-F030D4A4A433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_BackEnd", "Recovery_BackEnd\Recovery_BackEnd.csproj", "{1EA06F0E-FC20-458E-8ECD-F030D4A4A433}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Backend_Data", "Recovery_Backend_Data\Recovery_Backend_Data.csproj", "{64BDE497-381C-4E60-8763-3903EDF12E20}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Models", "Recovery_Models\Recovery_Models.csproj", "{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recovery_FrontEnd", "Recovery_FrontEnd\Recovery_FrontEnd.csproj", "{4015D4E5-F2F2-4001-B84B-9D61466E9829}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{1EA06F0E-FC20-458E-8ECD-F030D4A4A433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EA06F0E-FC20-458E-8ECD-F030D4A4A433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EA06F0E-FC20-458E-8ECD-F030D4A4A433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64BDE497-381C-4E60-8763-3903EDF12E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64BDE497-381C-4E60-8763-3903EDF12E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64BDE497-381C-4E60-8763-3903EDF12E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64BDE497-381C-4E60-8763-3903EDF12E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4015D4E5-F2F2-4001-B84B-9D61466E9829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4015D4E5-F2F2-4001-B84B-9D61466E9829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4015D4E5-F2F2-4001-B84B-9D61466E9829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4015D4E5-F2F2-4001-B84B-9D61466E9829}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

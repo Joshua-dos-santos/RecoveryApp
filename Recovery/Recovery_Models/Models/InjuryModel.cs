@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Recovery_BackEnd.Models
+namespace Recovery_Models.Models
 {
-    public class TrainingModel
+    public class InjuryModel
     {
         [Key]
         public int Unique_ID { get; set; }
