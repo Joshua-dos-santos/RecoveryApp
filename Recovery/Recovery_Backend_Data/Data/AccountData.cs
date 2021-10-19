@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Recovery_Backend_Data.Interfaces;
 using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Data
 {
-    public class AccountData
+    public class AccountData : IAccountContext
     {
         private readonly RecoveryDBContext _context;
         public AccountData(RecoveryDBContext context)
@@ -21,13 +22,13 @@ namespace Recovery_Backend_Data.Data
             return users;
         }
 
-        public async Task<string> GetUserID(string email)
+        public async Task<string> GetUserID(string email, string password)
         {
-            var userID = await _context.usermodel.Where(m => m.Email == email).Select(m => m.Unique_ID).ToListAsync();
+            var userID = await _context.usermodel.Where(m => m.Email == email && m.Password == password).Select(m => m.Unique_ID).ToListAsync();
             return userID[0].ToString();
         }
 
-        public string AddUser(UserModel user)
+        public UserModel AddUser(UserModel user)
         {
             var newUser = new UserModel()
             {
@@ -46,7 +47,7 @@ namespace Recovery_Backend_Data.Data
 
              _context.usermodel.Add(newUser);
             _context.SaveChanges();
-            return "succes";
+            return newUser;
         }
 
     }

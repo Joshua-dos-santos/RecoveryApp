@@ -20,7 +20,7 @@ namespace Recovery_Models.Models
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        public int? Physical_Therapist { get; set; }
+        public PTModel Physical_Therapist { get; set; }
         public int? Injury { get; set; }
         public int? Diet { get; set; }
         public int? Training_Schedule { get; set; }

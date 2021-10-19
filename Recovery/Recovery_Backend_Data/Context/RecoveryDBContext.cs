@@ -13,5 +13,6 @@ namespace Recovery_Backend_Data
 
         public DbSet<UserModel> usermodel { get; set; }
         public DbSet<PTModel> ptmodel { get; set; }
+        public DbSet<DietModel> diet { get; set; }
     }
 }

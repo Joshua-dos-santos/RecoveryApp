@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Recovery_FrontEnd.Controllers
     {
         public IActionResult Index()
         {
+            Recovery_BackEnd.Data.AccountContainer accountContainer = new Recovery_BackEnd.Data.AccountContainer();
+            UserModel user = accountContainer.AddUser();
             return View();
         }
     }
