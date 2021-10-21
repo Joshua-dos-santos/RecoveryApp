@@ -16,10 +16,16 @@ namespace Recovery_Backend_Data.Data
             _context = context;
         }
 
-        public async Task<List<PTModel>> GetPT(int id)
+        public PTModel GetPT(int id)
         {
-            var physical_therapist = await _context.ptmodel.Where(m => m.Unique_ID == id).ToListAsync();
+            var physical_therapist = _context.ptmodel.Where(m => m.Unique_ID == id).FirstOrDefault();
             return physical_therapist;
+        }
+
+        public async Task<List<UserModel>> GetUserByPT(int id)
+        {
+            var users = await _context.usermodel.Where(m => m.Physical_Therapist.Unique_ID == id).ToListAsync();
+            return users;
         }
     }
 }

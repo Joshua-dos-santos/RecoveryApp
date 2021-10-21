@@ -9,8 +9,8 @@ namespace Recovery_Backend_Data.Interfaces
 {
     public interface IAccountContext
     {
-        public Task<IEnumerable<UserModel>> GetUser(string id);
-        public Task<string> GetUserID(string email, string password);
+        //public Task<IEnumerable<UserModel>> GetUser(string id);
+        public UserModel GetUser(string email, string password);
         public UserModel AddUser(UserModel user);
     }
 }
