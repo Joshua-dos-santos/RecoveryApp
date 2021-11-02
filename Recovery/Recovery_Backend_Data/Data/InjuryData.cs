@@ -13,8 +13,7 @@ namespace Recovery_Backend_Data.Data
         private readonly RecoveryDBContext _context;
         public InjuryData(RecoveryDBContext context)
         {
-            _context = context;
-            
+            _context = context;  
         }
 
         public InjuryModel GetInjuryByID(int? unique_id)

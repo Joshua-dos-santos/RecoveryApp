@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Interfaces
 {
-    public interface IAccountContext
+    public interface AccountInterface
     {
         //public Task<IEnumerable<UserModel>> GetUser(string id);
         public UserModel GetUser(string email, string password);

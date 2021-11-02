@@ -6,7 +6,7 @@ namespace Recovery_Models.Models
     {   
         [Key]
         public int Unique_ID { get; set; }
-        public string Food_Name { get; set; }
+        public string Meal { get; set; }
         public int Protein { get; set; }
         public int Fats { get; set; }
         public int Carbohydrates { get; set; }

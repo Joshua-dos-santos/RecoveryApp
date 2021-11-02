@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Interfaces
 {
-    public interface InjuryInterface
+    public interface DietInterface
     {
-        public InjuryModel GetInjuryByID(int? unique_id);
+        public DietModel GetDietList();
     }
 }

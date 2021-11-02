@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Interfaces
 {
-    public interface IPTContext
+    public interface PTInterface
     {
         public PTModel GetPTByID(int? key);
         public PTModel GetPTByLogin(string email, string password, string key);

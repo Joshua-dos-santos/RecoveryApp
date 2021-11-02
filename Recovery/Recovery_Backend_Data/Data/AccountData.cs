@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Data
 {
-    public class AccountData : IAccountContext
+    public class AccountData : AccountInterface
     {
         private readonly RecoveryDBContext _context;
         private readonly PTData _PtData;

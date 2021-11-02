@@ -19,7 +19,7 @@ namespace Recovery_Models.Models
         public string User_Key { get; set; }
         public PTModel Physical_Therapist { get; set; }
         public InjuryModel Injury { get; set; }
-        public int? Diet { get; set; }
+        public DietModel Diet { get; set; }
         public int? Training_Schedule { get; set; }
     }
 }
