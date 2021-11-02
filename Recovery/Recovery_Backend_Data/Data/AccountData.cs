@@ -20,12 +20,6 @@ namespace Recovery_Backend_Data.Data
             _PtData = new PTData(context);
         }
 
-        //public async Task<IEnumerable<UserModel>> GetUser(string id)
-        //{
-        //    var users = await _context.usermodel.Where(m => m.Unique_ID == Convert.ToInt32(id)).ToListAsync();
-        //    return users;
-        //}
-
         public UserModel GetUser(string email, string password)
         {
             var userID =  _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefault();

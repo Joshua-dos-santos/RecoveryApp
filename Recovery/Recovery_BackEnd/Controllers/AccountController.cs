@@ -51,7 +51,7 @@ namespace Recovery_BackEnd.Controllers
                 };
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                return Ok(tokenHandler.WriteToken(token));
+                return Ok(tokenHandler.WriteToken(token) + currentUser);
             }
             else
             {
