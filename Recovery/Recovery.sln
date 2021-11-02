@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Backend_Data", "Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Models", "Recovery_Models\Recovery_Models.csproj", "{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recovery_FrontEnd_User", "Recovery_FrontEnd_User\Recovery_FrontEnd_User.csproj", "{63D6291A-236D-4FCC-B15C-09570E315439}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D6291A-236D-4FCC-B15C-09570E315439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D6291A-236D-4FCC-B15C-09570E315439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D6291A-236D-4FCC-B15C-09570E315439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D6291A-236D-4FCC-B15C-09570E315439}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

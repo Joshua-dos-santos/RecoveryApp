@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +21,6 @@ namespace Recovery_Models.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string User_Key { get; set; }
-        [Column("unique_id")]
         public PTModel Physical_Therapist { get; set; }
         public int? Injury { get; set; }
         public int? Diet { get; set; }

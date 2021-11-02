@@ -32,11 +32,10 @@ namespace Recovery_Backend_Data.Data
             return userID;
         }
 
-        public UserModel AddUser(UserModel user)
+        public UserModel Register(UserModel user)
         {
-            user.User_Key = RandomString();
-            user.Physical_Therapist = _PtData.GetPT(user.Physical_Therapist.Unique_ID);
-
+            user.User_Key = Utilities.RandomString();
+            PTModel physical_Therapist = _PtData.GetPTByID(user.Physical_Therapist.Unique_ID);
             var newUser = new UserModel()
             {
                 Unique_ID = user.Unique_ID,
@@ -44,11 +43,11 @@ namespace Recovery_Backend_Data.Data
                 Last_Name = user.Last_Name,
                 Birthdate = user.Birthdate,
                 Email = user.Email,
-                Password = HashPassword(user.Password),
+                Password = Utilities.HashPassword(user.Password),
                 User_Key = user.User_Key,
                 Height = user.Height,
                 Weight = user.Weight,
-                Physical_Therapist = user.Physical_Therapist,
+                Physical_Therapist = physical_Therapist,
                 Injury = user.Injury,
                 Diet = user.Diet,
                 Training_Schedule = user.Training_Schedule
@@ -59,28 +58,7 @@ namespace Recovery_Backend_Data.Data
             return newUser;
         }
 
-        public string HashPassword(string password)
-        {
-            SHA1CryptoServiceProvider SHA1 = new SHA1CryptoServiceProvider();
-
-            byte[] password_bytes = Encoding.ASCII.GetBytes(password);
-            byte[] encrypted_bytes = SHA1.ComputeHash(password_bytes);
-            return Convert.ToBase64String(encrypted_bytes);
-        }
-
-        public string RandomString()
-        {
-            Random random = new Random();
-            string b = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            int length = 20;
-            string rnd = "";
-            for (int i = 0; i < length; i++)
-            {
-                int a = random.Next(60);
-                rnd = rnd + b.ElementAt(a);
-            }
-            return rnd;
-        }
+        
 
     }
 }

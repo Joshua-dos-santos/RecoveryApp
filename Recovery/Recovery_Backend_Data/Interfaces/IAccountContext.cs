@@ -11,6 +11,6 @@ namespace Recovery_Backend_Data.Interfaces
     {
         //public Task<IEnumerable<UserModel>> GetUser(string id);
         public UserModel GetUser(string email, string password);
-        public UserModel AddUser(UserModel user);
+        public UserModel Register(UserModel user);
     }
 }

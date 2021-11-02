@@ -16,12 +16,12 @@ using System.Threading.Tasks;
 namespace Recovery_BackEnd.Controllers
 {
     [Route("[controller]/[action]")]
-    public class UserModelsController : Controller
+    public class AccountController : Controller
     {
         private readonly AccountData _accountData;
         private readonly PTData _ptData;
 
-        public UserModelsController(RecoveryDBContext context)
+        public AccountController(RecoveryDBContext context)
         {
             _accountData = new AccountData(context);
             _ptData = new PTData(context);
@@ -59,16 +59,10 @@ namespace Recovery_BackEnd.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult Physical_Therapists()
-        //{
-        //    return Ok(_accountData.);
-        //}
-
-        [HttpPost]
-        public UserModel AddUser(UserModel user)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody] UserModel user)
         {
-            return _accountData.AddUser(user);
+            return Ok( _accountData.Register(user));
         }
 
 
