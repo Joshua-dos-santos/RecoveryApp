@@ -19,12 +19,17 @@ namespace Recovery_BackEnd.Controllers
     public class AccountController : Controller
     {
         private readonly AccountData _accountData;
-        private readonly PTData _ptData;
 
         public AccountController(RecoveryDBContext context)
         {
-            _accountData = new AccountData(context);
-            _ptData = new PTData(context);
+            try
+            {
+                _accountData = new AccountData(context);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
 
@@ -59,10 +64,10 @@ namespace Recovery_BackEnd.Controllers
             }
         }
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] UserModel user)
+        [HttpPost]
+        public async Task<IActionResult> Register(UserModel user)
         {
-            return Ok( _accountData.Register(user));
+            return Ok(_accountData.Register(user));
         }
 
 

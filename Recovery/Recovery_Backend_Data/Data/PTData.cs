@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Data
 {
-    public class PTData : IPTContext
+    public class PTData : PTInterface
     {
         private readonly RecoveryDBContext _context;
         public PTData(RecoveryDBContext context)

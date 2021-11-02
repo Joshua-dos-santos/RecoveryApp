@@ -14,10 +14,12 @@ namespace Recovery_Backend_Data.Data
     {
         private readonly RecoveryDBContext _context;
         private readonly PTData _PtData;
+        private readonly InjuryData _injuryData;
         public AccountData(RecoveryDBContext context)
         {
             _context = context;
             _PtData = new PTData(context);
+            _injuryData = new InjuryData(context);
         }
 
         public UserModel GetUser(string email, string password)
@@ -29,7 +31,6 @@ namespace Recovery_Backend_Data.Data
         public UserModel Register(UserModel user)
         {
             user.User_Key = Utilities.RandomString();
-            PTModel physical_Therapist = _PtData.GetPTByID(user.Physical_Therapist.Unique_ID);
             var newUser = new UserModel()
             {
                 Unique_ID = user.Unique_ID,
@@ -41,13 +42,13 @@ namespace Recovery_Backend_Data.Data
                 User_Key = user.User_Key,
                 Height = user.Height,
                 Weight = user.Weight,
-                Physical_Therapist = physical_Therapist,
-                Injury = user.Injury,
+                Physical_Therapist = _PtData.GetPTByID(user.Physical_Therapist.Unique_ID),
+                Injury = _injuryData.GetInjuryByID(user.Injury.Unique_ID),
                 Diet = user.Diet,
                 Training_Schedule = user.Training_Schedule
             };
 
-             _context.usermodel.Add(newUser);
+            _context.usermodel.Add(newUser);
             _context.SaveChanges();
             return newUser;
         }
