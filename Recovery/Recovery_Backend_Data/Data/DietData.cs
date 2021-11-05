@@ -1,4 +1,5 @@
-﻿using Recovery_Models.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace Recovery_Backend_Data.Data
             _context = context;
         }
 
-        public List<DietModel> GetDietList()
+        public async Task<List<DietModel>> GetDietList()
         {
-            var diets = _context.diet.ToList();
+            var diets =await _context.diet.ToListAsync();
             return diets;
         }
     }

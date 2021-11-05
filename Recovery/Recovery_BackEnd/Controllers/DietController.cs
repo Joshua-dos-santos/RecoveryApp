@@ -20,7 +20,7 @@ namespace Recovery_BackEnd.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowDietList()
         {
-            return Ok(_dietData.GetDietList());
+            return Ok(await _dietData.GetDietList());
         }
     }
 }
