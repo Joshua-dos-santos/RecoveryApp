@@ -10,7 +10,7 @@ namespace Recovery_Models.Models
         public decimal Protein { get; set; }
         public decimal Fats { get; set; }
         public decimal Carbohydrates { get; set; }
-        public decimal calories { get; set; }
-        public decimal fibers { get; set; }
+        public decimal Calories { get; set; }
+        public decimal Fibers { get; set; }
     }
 }

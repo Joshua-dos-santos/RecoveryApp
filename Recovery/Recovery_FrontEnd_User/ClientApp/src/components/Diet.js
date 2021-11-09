@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-export class Diet extends Component {
-    static displayName = Diet.name;
+export class Diets extends Component {
+    static displayName = Diets.name;
 
     constructor(props) {
         super(props);
@@ -12,7 +13,6 @@ export class Diet extends Component {
         };
     }
         componentDidMount() {
-
             this.populateData();        
     }
 
@@ -21,13 +21,24 @@ export class Diet extends Component {
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
-                        <th>title</th>
+                        <th>Meal</th>
+                        <th>Calories</th>
+                        <th>Protein</th>
+                        <th>Fats</th>
+                        <th>Carbohydrates</th>
+                        <th>Fibers</th>
                     </tr>
                 </thead>
                 <tbody>
                     {diets.map(diet =>
-                        <tr key={diet.Unique_ID}>
-                            <td>{diet.Meal}</td>
+                        <tr key={diet.unique_ID}>
+                            <td>{diet.meal}</td>
+                            <td>{diet.calories}Kcal</td>
+                            <td>{diet.protein}g</td>
+                            <td>{diet.fats}g</td>
+                            <td>{diet.carbohydrates}g</td>
+                            <td>{diet.fibers}g</td>
+                            <td></td>
                         </tr>
                     )}
                 </tbody>
@@ -38,7 +49,7 @@ export class Diet extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : diets.renderTable(this.state.diets)
+            : Diets.renderTable(this.state.diets)
 
         return (
             <div>
@@ -49,10 +60,19 @@ export class Diet extends Component {
                 )
     }
 
-    async populateData() {
-        const response = await fetch('api/diets');
-        const data = await response.json();
-        this.setState({ diets: data, loading: false });
+    populateData = async () => {
+        var self = this;
+        axios({
+            method: 'get',
+            url: 'https://localhost:44307/api/diets'
+        }).then(function (data) {
+            console.log(data.data);
+            self.setState({ diets: data.data, loading: false });
+        }
+        );
+        //const response = await fetch('https://localhost:44307/api/diets');
+        //const data = await response.json();
+        //this.setState({ diets: data, loading: false });
     }
 
 

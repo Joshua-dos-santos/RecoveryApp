@@ -21,7 +21,10 @@ namespace Recovery_BackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,6 +48,8 @@ namespace Recovery_BackEnd
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
 
             app.UseAuthorization();
 
