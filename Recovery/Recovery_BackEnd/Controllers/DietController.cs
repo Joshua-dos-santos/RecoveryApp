@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_BackEnd.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/diets")]
     public class DietController : Controller
     {
         private readonly DietData _dietData;
