@@ -11,7 +11,7 @@ namespace Recovery_Backend_Data.Interfaces
     {
         public PTModel GetPTByID(int? key);
         public PTModel GetPTByLogin(string email, string password, string key);
-        public List<UserModel> GetUsersByPT(int id);
+        public List<RegisterModel> GetUsersByPT(int id);
         public PTModel RegisterPT(PTModel ptModel);
     }
 }

@@ -23,9 +23,9 @@ namespace Recovery_Backend_Data.Data
             return diets;
         }
         //THIS METHOD IS NOT FINISHED
-        public async Task<UserModel> UpdateUserDiet(DietModel diet)
+        public async Task<RegisterModel> UpdateUserDiet(DietModel diet)
         {
-            UserModel user = new UserModel();
+            RegisterModel user = new RegisterModel();
             return user;
         }
     }

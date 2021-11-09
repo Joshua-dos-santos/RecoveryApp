@@ -17,7 +17,7 @@ namespace Recovery_BackEnd.Controllers
         {
             _dietData = new DietData(context);
         }
-        [HttpGet]
+        [HttpGet("DietList")]
         public async Task<IActionResult> ShowDietList()
         {
             return Ok(await _dietData.GetDietList());

@@ -2,7 +2,7 @@
 
 namespace Recovery_Models.Models
 {
-    public class UserModel
+    public class RegisterModel
     {
         [Key]
         public int Unique_ID { get; set; }

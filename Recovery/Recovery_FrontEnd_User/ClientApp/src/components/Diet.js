@@ -38,7 +38,7 @@ export class Diets extends Component {
                             <td>{diet.fats}g</td>
                             <td>{diet.carbohydrates}g</td>
                             <td>{diet.fibers}g</td>
-                            <td></td>
+                            <td><a>Choose Meal</a></td>
                         </tr>
                     )}
                 </tbody>
@@ -54,7 +54,7 @@ export class Diets extends Component {
         return (
             <div>
                 <h1 id="tableLabel">Diets</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <p>Choose your diet meal</p>
                 {contents}
             </div>
                 )
@@ -64,13 +64,13 @@ export class Diets extends Component {
         var self = this;
         axios({
             method: 'get',
-            url: 'https://localhost:44307/api/diets'
+            url: 'https://localhost:44307/api/diets/DietList'
         }).then(function (data) {
             console.log(data.data);
             self.setState({ diets: data.data, loading: false });
         }
         );
-        //const response = await fetch('https://localhost:44307/api/diets');
+        //const response = await fetch('https://localhost:44307/api/diets/DietList');
         //const data = await response.json();
         //this.setState({ diets: data, loading: false });
     }

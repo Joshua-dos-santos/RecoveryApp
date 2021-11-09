@@ -22,23 +22,24 @@ namespace Recovery_Backend_Data.Data
             _injuryData = new InjuryData(context);
         }
 
-        public UserModel GetUser(string email, string password)
+        public RegisterModel GetUser(string email, string password)
         {
             var userID =  _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
+
             return userID;
         }
 
-        public UserModel Register(UserModel user)
+        public RegisterModel Register(RegisterModel user)
         {
             user.User_Key = Utilities.RandomString();
-            var newUser = new UserModel()
+            var newUser = new RegisterModel()
             {
                 Unique_ID = user.Unique_ID,
                 First_Name = user.First_Name,
                 Last_Name = user.Last_Name,
                 Birthdate = user.Birthdate,
                 Email = user.Email,
-                Password = Utilities.HashPassword(user.Password),
+                Password = user.Password,
                 User_Key = user.User_Key,
                 Height = user.Height,
                 Weight = user.Weight,

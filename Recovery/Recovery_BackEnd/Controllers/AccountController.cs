@@ -34,9 +34,10 @@ namespace Recovery_BackEnd.Controllers
 
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] UserModel user)
+        public async Task<IActionResult> Login([FromBody] LoginModel user)
         {
             var currentUser = _accountData.GetUser(user.Email, user.Password);
+            Console.WriteLine(currentUser);
 
             if (currentUser != null)
             {
@@ -65,7 +66,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(UserModel user)
+        public async Task<IActionResult> Register(RegisterModel user)
         {
             return Ok(_accountData.Register(user));
         }

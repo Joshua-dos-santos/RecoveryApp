@@ -11,7 +11,7 @@ namespace Recovery_Backend_Data
         {
         }
 
-        public DbSet<UserModel> usermodel { get; set; }
+        public DbSet<RegisterModel> usermodel { get; set; }
         public DbSet<PTModel> physical_therapist { get; set; }
         public DbSet<DietModel> diet { get; set; }
         public DbSet<InjuryModel> injury { get; set; }

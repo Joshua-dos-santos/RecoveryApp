@@ -10,7 +10,7 @@ namespace Recovery_Backend_Data.Interfaces
     public interface AccountInterface
     {
         //public Task<IEnumerable<UserModel>> GetUser(string id);
-        public UserModel GetUser(string email, string password);
-        public UserModel Register(UserModel user);
+        public RegisterModel GetUser(string email, string password);
+        public RegisterModel Register(RegisterModel user);
     }
 }
