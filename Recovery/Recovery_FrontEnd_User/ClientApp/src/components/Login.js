@@ -73,18 +73,17 @@ export class Login extends Component {
     render() {
         if (ReactSession.get("loggedin")) {
             return (
-                <Redirect to="/user/dashboard/" />
+                <Redirect to="/diets" />
             )
 
         }
 
         return (
             <>
-                <NavMenu />
                 <div className="row p-0 mx-auto logincontainer">
                     <div className="col-12 col-lg-6 p-1">
-                        <h1 className="text-center">Login</h1>
-                        <div className="col-12">
+                        <h1>Login</h1>
+                        <div>
                             <Form>
                                 {this.state.hasError ? (
                                     <div className="py-2 col-12">

@@ -41,23 +41,24 @@ namespace Recovery_BackEnd.Controllers
 
             if (currentUser != null)
             {
-                var mySecret = "asdv234234^&%&^%&^hjsdfb2%%%";
-                var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(mySecret));
+            ViewData["Key"] = currentUser.User_Key;
+                //var mySecret = "asdv234234^&%&^%&^hjsdfb2%%%";
+                //var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(mySecret));
 
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim(ClaimTypes.NameIdentifier, currentUser.Unique_ID.ToString()),
-                        new Claim(ClaimTypes.Name, currentUser.First_Name +" "+ currentUser.Last_Name),
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(7),
-                    SigningCredentials = new SigningCredentials(mySecurityKey, SecurityAlgorithms.HmacSha256Signature)
-                };
+                //var tokenHandler = new JwtSecurityTokenHandler();
+                //var tokenDescriptor = new SecurityTokenDescriptor
+                //{
+                //    Subject = new ClaimsIdentity(new Claim[]
+                //    {
+                //        new Claim(ClaimTypes.NameIdentifier, currentUser.Unique_ID.ToString()),
+                //        new Claim(ClaimTypes.Name, currentUser.First_Name +" "+ currentUser.Last_Name),
+                //    }),
+                //    Expires = DateTime.UtcNow.AddDays(7),
+                //    SigningCredentials = new SigningCredentials(mySecurityKey, SecurityAlgorithms.HmacSha256Signature)
+                //};
 
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return Ok(tokenHandler.WriteToken(token) + currentUser);
+                //var token = tokenHandler.CreateToken(tokenDescriptor);
+                return Ok(ViewData["Key"]);
             }
             else
             {
