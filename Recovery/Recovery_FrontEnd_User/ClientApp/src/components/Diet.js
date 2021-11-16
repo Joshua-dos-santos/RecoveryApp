@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Login } from './pages/Login';
 
 export class Diets extends Component {
     static displayName = Diets.name;
@@ -9,12 +10,27 @@ export class Diets extends Component {
 
         this.state = {
             diets: [],
+            
             loading: true
         };
+        
     }
         componentDidMount() {
             this.populateData();        
     }
+
+    //setDiet = event => {
+    //    event.preventDefault();
+    //    var token = localStorage.getItem("Key");
+    //    axios({
+    //        method: 'post',
+    //        url: 'https://localhost:44307/api/diets/DietList',
+    //        dataType: 'json',
+    //        data: diets
+    //    }).then(data => console.log(data));
+
+ /*   }*/
+
 
     static renderTable(diets) {
         return (
@@ -38,7 +54,7 @@ export class Diets extends Component {
                             <td>{diet.fats}g</td>
                             <td>{diet.carbohydrates}g</td>
                             <td>{diet.fibers}g</td>
-                            <td><a>Choose Meal</a></td>
+                            <td><button /*onClick={(e) => this.renderTable(e)}*/>Choose Meal</button></td>
                         </tr>
                     )}
                 </tbody>
@@ -62,6 +78,7 @@ export class Diets extends Component {
 
     populateData = async () => {
         var self = this;
+        localStorage.clear();
         axios({
             method: 'get',
             url: 'https://localhost:44307/api/diets/DietList'
@@ -70,10 +87,5 @@ export class Diets extends Component {
             self.setState({ diets: data.data, loading: false });
         }
         );
-        //const response = await fetch('https://localhost:44307/api/diets/DietList');
-        //const data = await response.json();
-        //this.setState({ diets: data, loading: false });
     }
-
-
 }

@@ -12,9 +12,11 @@ namespace Recovery_Backend_Data.Data
     public class DietData : DietInterface
     {
         private readonly RecoveryDBContext _context;
+        private readonly AccountData _accountData;
         public DietData(RecoveryDBContext context)
         {
             _context = context;
+            _accountData = new AccountData(context);
         }
 
         public async Task<List<DietModel>> GetDietList()
@@ -22,11 +24,20 @@ namespace Recovery_Backend_Data.Data
             var diets =await _context.diet.ToListAsync();
             return diets;
         }
-        //THIS METHOD IS NOT FINISHED
+        
         public async Task<RegisterModel> UpdateUserDiet(DietModel diet)
         {
             RegisterModel user = new RegisterModel();
+            user.Diet = diet;
+            await _context.SaveChangesAsync();
+            
             return user;
+        }
+
+        public async Task<DietModel> GetDiet(int id)
+        {
+            var diet = await _context.diet.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
+            return diet;
         }
     }
 }

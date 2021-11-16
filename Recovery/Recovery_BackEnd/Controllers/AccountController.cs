@@ -36,9 +36,8 @@ namespace Recovery_BackEnd.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel user)
         {
-            var currentUser = _accountData.GetUser(user.Email, user.Password);
+            var currentUser = _accountData.GetUserByLogin(user.Email, user.Password);
             Console.WriteLine(currentUser);
-
             if (currentUser != null)
             {
                 var mySecret = "asdv234234^&%&^%&^hjsdfb2%%%";
@@ -57,7 +56,7 @@ namespace Recovery_BackEnd.Controllers
                 };
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                return Ok(tokenHandler.WriteToken(token) + currentUser);
+                return Ok(tokenHandler.WriteToken(token));
             }
             else
             {

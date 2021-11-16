@@ -22,11 +22,17 @@ namespace Recovery_Backend_Data.Data
             _injuryData = new InjuryData(context);
         }
 
-        public RegisterModel GetUser(string email, string password)
+        public RegisterModel GetUserByLogin(string email, string password)
         {
-            var userID =  _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
+            var user =  _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
 
-            return userID;
+            return user;
+        }
+
+        public RegisterModel GetUserByID(string key)
+        {
+            var user = _context.usermodel.Where(m => m.User_Key == key).FirstOrDefault();
+            return user;
         }
 
         public RegisterModel Register(RegisterModel user)
