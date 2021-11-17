@@ -122,7 +122,7 @@ export default class SignInForm extends Component {
 
                     <div className="formField">
                         <button className="formFieldButton" onClick={(e) => this.handleLogin(e)}>Sign In</button>
-                        <Link className="m-2 registerlink" to="/register">No account yet? Register here!</Link>
+                        <Link className="m-2 registerlink" to="/register" id="registerLink">No account yet? Register here!</Link>
                     </div>
                 </form>
             </div>

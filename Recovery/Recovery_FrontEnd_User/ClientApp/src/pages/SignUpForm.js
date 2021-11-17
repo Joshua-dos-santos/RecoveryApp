@@ -8,7 +8,7 @@ export default class SignUpForm extends Component {
         this.state = {
             email: "",
             password: "",
-            name: "",
+            first_name: "",
             hasAgreed: false
         };
 
@@ -38,32 +38,16 @@ export default class SignUpForm extends Component {
             <div className="formCenter">
                 <form onSubmit={this.handleSubmit} className="formFields">
                     <div className="formField">
-                        <label className="formFieldLabel" htmlFor="name">
-                            Full Name
+                        <label className="formFieldLabel" htmlFor="first_name">
+                            First Name
                         </label>
-                        <input
-                            type="text"
-                            id="name"
-                            className="formFieldInput"
-                            placeholder="Enter your full name"
-                            name="name"
-                            value={this.state.name}
-                            onChange={this.handleChange}
-                        />
+                        <input type="text" id="first_name" className="formFieldInput" placeholder="Enter your first name" name="first_name" value={this.state.first_name} onChange={this.handleChange} />
                     </div>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="password">
                             Password
                         </label>
-                        <input
-                            type="password"
-                            id="password"
-                            className="formFieldInput"
-                            placeholder="Enter your password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
+                        <input type="password" id="password" className="formFieldInput" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange}/>
                     </div>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="email">
@@ -98,7 +82,7 @@ export default class SignUpForm extends Component {
 
                     <div className="formField">
                         <button className="formFieldButton">Sign Up</button>{" "}
-                        <Link to="/sign-in" className="formFieldLink">
+                        <Link to="/login" className="formFieldLink">
                             I'm already member
                         </Link>
                     </div>
