@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Login } from './pages/Login';
+import './Diet.css'
+import { Login } from '../pages/Login';
 
 export class Diets extends Component {
     static displayName = Diets.name;
@@ -10,13 +11,13 @@ export class Diets extends Component {
 
         this.state = {
             diets: [],
-            
+
             loading: true
         };
-        
+
     }
-        componentDidMount() {
-            this.populateData();        
+    componentDidMount() {
+        this.populateData();
     }
 
     //setDiet = event => {
@@ -29,37 +30,37 @@ export class Diets extends Component {
     //        data: diets
     //    }).then(data => console.log(data));
 
- /*   }*/
+    /*   }*/
 
 
     static renderTable(diets) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Meal</th>
-                        <th>Calories</th>
-                        <th>Protein</th>
-                        <th>Fats</th>
-                        <th>Carbohydrates</th>
-                        <th>Fibers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {diets.map(diet =>
-                        <tr key={diet.unique_ID}>
-                            <td>{diet.meal}</td>
-                            <td>{diet.calories}Kcal</td>
-                            <td>{diet.protein}g</td>
-                            <td>{diet.fats}g</td>
-                            <td>{diet.carbohydrates}g</td>
-                            <td>{diet.fibers}g</td>
-                            <td><button /*onClick={(e) => this.renderTable(e)}*/>Choose Meal</button></td>
+                <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
+                    <thead>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Calories</th>
+                            <th>Protein</th>
+                            <th>Fats</th>
+                            <th>Carbohydrates</th>
+                            <th>Fibers</th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
-            )
+                    </thead>
+                    <tbody>
+                        {diets.map(diet =>
+                            <tr key={diet.unique_ID}>
+                                <td>{diet.meal}</td>
+                                <td>{diet.calories}Kcal</td>
+                                <td>{diet.protein}g</td>
+                                <td>{diet.fats}g</td>
+                                <td>{diet.carbohydrates}g</td>
+                                <td>{diet.fibers}g</td>
+                                <td><button /*onClick={(e) => this.renderTable(e)}*/>Choose Meal</button></td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+        )
     }
 
     render() {
@@ -73,7 +74,7 @@ export class Diets extends Component {
                 <p>Choose your diet meal</p>
                 {contents}
             </div>
-                )
+        )
     }
 
     populateData = async () => {

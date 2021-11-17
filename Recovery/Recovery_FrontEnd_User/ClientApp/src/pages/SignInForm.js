@@ -1,7 +1,6 @@
-﻿import React, { Component, useEffect } from 'react';
+﻿import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "./Login.css";
-import { Login } from "./Login.js";
 import axios from 'axios'
 import ReactSession from 'react-client-session/dist/ReactSession';
 import { Redirect } from 'react-router-dom';
@@ -12,7 +11,7 @@ export default class SignInForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            mail: '',
             password: '',
             token: '',
             hasError: false,
@@ -20,7 +19,26 @@ export default class SignInForm extends Component {
             loggedIn: false,
             token: null
         }
-        this.handleLogin = this.handleLogin.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        console.log("The form was submitted with the following data:");
+        console.log(this.state);
+    }
+
+    handleChange(event) {
+        let target = event.target;
+        let value = target.type === "checkbox" ? target.checked : target.value;
+        let name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     componentDidUpdate() {
@@ -64,7 +82,7 @@ export default class SignInForm extends Component {
     render() {
         if (ReactSession.get("loggedin")) {
             return (
-                <Redirect to="/diets" />
+                <Redirect exact to="/diets" />
             )
 
         }
@@ -77,13 +95,13 @@ export default class SignInForm extends Component {
                             E-Mail Address
                         </label>
                         <input
-                            type="email"
+                            type="text"
                             id="email"
                             className="formFieldInput"
                             placeholder="Enter your email"
                             name="email"
                             value={this.state.email}
-                            onChange={this.handleChange}
+                            onChange={(e) => this.setState({ mail: e.target.value })}
                         />
                     </div>
 
@@ -98,12 +116,12 @@ export default class SignInForm extends Component {
                             placeholder="Enter your password"
                             name="password"
                             value={this.state.password}
-                            onChange={this.handleChange}
+                            onChange={(e) => this.setState({ password: e.target.value })}
                         />
                     </div>
 
                     <div className="formField">
-                        <button className="formFieldButton" onClick={(e) => this.handleLogin(e)}>Sign In</button>{" "}
+                        <button className="formFieldButton" onClick={(e) => this.handleLogin(e)}>Sign In</button>
                         <Link className="m-2 registerlink" to="/register">No account yet? Register here!</Link>
                     </div>
                 </form>

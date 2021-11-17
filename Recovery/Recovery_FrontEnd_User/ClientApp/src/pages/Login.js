@@ -3,12 +3,12 @@ import { HashRouter as Router, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
 
+
 import "./Login.css";
 
 export class Login extends Component {
     render() {
         return (
-            <Router basename="/react-auth-ui/">
                 <div className="App">
                     <div className="appAside" />
                     <div className="appForm">
@@ -22,7 +22,7 @@ export class Login extends Component {
                             </NavLink>
                             <NavLink
                                 exact
-                                to="/"
+                                to="/sign-up"
                                 activeClassName="pageSwitcherItem-active"
                                 className="pageSwitcherItem"
                             >
@@ -41,7 +41,7 @@ export class Login extends Component {
                             or{" "}
                             <NavLink
                                 exact
-                                to="/"
+                                to="/sign-up"
                                 activeClassName="formTitleLink-active"
                                 className="formTitleLink"
                             >
@@ -49,11 +49,10 @@ export class Login extends Component {
                             </NavLink>
                         </div>
 
-                        <Route exact path="/" component={SignUpForm} />
-                        <Route path="/sign-in" component={SignInForm} />
+                    <Route path="/sign-up" component={SignUpForm} />
+                    <Route path="/sign-in" component={SignInForm} />
                     </div>
                 </div>
-            </Router>
         );
     }
 }
