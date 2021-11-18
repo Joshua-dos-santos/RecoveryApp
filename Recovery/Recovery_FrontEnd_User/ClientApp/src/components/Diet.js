@@ -47,14 +47,14 @@ export class Diets extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {diets.map(diet =>
-                            <tr key={diet.unique_ID}>
-                                <td>{diet.meal}</td>
-                                <td>{diet.calories}Kcal</td>
-                                <td>{diet.protein}g</td>
-                                <td>{diet.fats}g</td>
-                                <td>{diet.carbohydrates}g</td>
-                                <td>{diet.fibers}g</td>
+                        {diets.results.map(diet =>
+                            <tr key={diet.id}>
+                                <td>{diet.title}</td>
+                                <td>{diet.nutrition.nutrients[0].amount}Kcal</td>
+                                <td>{diet.nutrition.nutrients[1].amount}g</td>
+                                <td>{diet.nutrition.nutrients[2].amount}g</td>
+                                <td>{diet.nutrition.nutrients[3].amount}g</td>
+                                <td>{diet.nutrition.nutrients[4].amount}g</td>
                                 <td><button /*onClick={(e) => this.renderTable(e)}*/>Choose Meal</button></td>
                             </tr>
                         )}
@@ -82,7 +82,7 @@ export class Diets extends Component {
         localStorage.clear();
         axios({
             method: 'get',
-            url: 'https://localhost:44307/api/diets/DietList'
+            url: 'https://api.spoonacular.com/recipes/complexSearch?apiKey=47bc84e2dca9462ea4524639a51ea75d&minProtein=10&minCalories=50&minFat=1&minFiber=0&minCarbs=10&number=20'
         }).then(function (data) {
             console.log(data.data);
             self.setState({ diets: data.data, loading: false });
