@@ -31,7 +31,7 @@ namespace Recovery_Backend_Data.Data
 
         public List<RegisterModel> GetUsersByPT(int id)
         {
-            var users = _context.usermodel.Where(m => m.Physical_Therapist.Unique_ID == id).ToList();
+            var users = _context.usermodel.Where(m => m.Physical_Therapist == id).ToList();
             return users;
         }
 

@@ -64,8 +64,8 @@ namespace Recovery_BackEnd.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterModel user)
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register([FromBody]RegisterModel user)
         {
             return Ok(_accountData.Register(user));
         }

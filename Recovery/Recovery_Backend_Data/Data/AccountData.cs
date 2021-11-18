@@ -49,8 +49,8 @@ namespace Recovery_Backend_Data.Data
                 User_Key = user.User_Key,
                 Height = user.Height,
                 Weight = user.Weight,
-                Physical_Therapist = _PtData.GetPTByID(user.Physical_Therapist.Unique_ID),
-                Injury = _injuryData.GetInjuryByID(user.Injury.Unique_ID),
+                Physical_Therapist = user.Physical_Therapist,
+                Injury = user.Injury,
                 Diet = user.Diet,
                 Training_Schedule = user.Training_Schedule
             };

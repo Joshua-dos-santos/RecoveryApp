@@ -28,8 +28,8 @@ namespace Recovery_BackEnd.Controllers
         public async Task<IActionResult> UpdateUserMeal(int MealID)
         {
             DietModel diet = await _dietData.GetDiet(MealID);
-            RegisterModel user = await _dietData.UpdateUserDiet(diet);
-            return Ok(user);
+            //RegisterModel user = await _dietData.UpdateUserDiet(diet);
+            return Ok();
         }
     }
 }

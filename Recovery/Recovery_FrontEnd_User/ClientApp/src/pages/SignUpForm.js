@@ -1,6 +1,7 @@
 ﻿import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Slider from 'react-rangeslider';
+import axios from 'axios'
 
 
 
@@ -11,14 +12,14 @@ export default class SignUpForm extends Component {
         super();
         
         this.state = {
-            email: "",
-            password: "",
-            birthday: null,
             first_name: "",
             last_name: "",
+            birthdate: "",
+            email: "",
+            password: "",
             height: 0,
             weight: 0,
-            physical_therapist: "",
+            physical_therapist: 0,
             hasAgreed: false
         };
 
@@ -47,18 +48,34 @@ export default class SignUpForm extends Component {
         });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        console.log("The form was submitted with the following data:");
-        console.log(this.state);
+    handleSubmit = event => {
+        event.preventDefault();
+        var user = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            birthdate: this.state.birthdate,
+            height: this.state.height,
+            weight: this.state.weight,
+            email: this.state.email,
+            password: this.state.password,
+            physical_therapist: this.state.physical_therapist
+        };
+        var userdata = user;
+        axios({
+            method: 'post',
+            url: 'https://localhost:44307/Account/Register/Register',
+            dataType: "json",
+            data: userdata
+        }).then(data => console.log(data));
     }
 
 
 
     render() {
         let { height } = this.state
-        let {weight} = this.state
+        let { weight } = this.state
+
+
         return (
             <div className="formCenter">
                 <form onSubmit={this.handleSubmit} className="formFields">
@@ -75,10 +92,10 @@ export default class SignUpForm extends Component {
                         <input type="text" id="last_name" className="formFieldInput" placeholder="Enter your last name" name="last_name" value={this.state.last_name} onChange={this.handleChange} />
                     </div>
                     <div className="formField">
-                        <label className="formFieldLabel" htmlFor="first_name">
+                        <label className="formFieldLabel" htmlFor="birthdate">
                             Birthday
                         </label>
-
+                        <input type="text" id="birthdate" className="formFieldInput" placeholder="Enter your birthday" name="birthdate" value={this.state.birthdate} onChange={this.handleChange} />
                     </div>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="height">
@@ -95,12 +112,6 @@ export default class SignUpForm extends Component {
                         />
                     </div>
                     <div className="formField">
-                        <label className="formFieldLabel" htmlFor="password">
-                            Password
-                        </label>
-                        <input type="password" id="password" className="formFieldInput" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    </div>
-                    <div className="formField">
                         <label className="formFieldLabel" htmlFor="email">
                             E-Mail Address
                         </label>
@@ -113,6 +124,12 @@ export default class SignUpForm extends Component {
                             value={this.state.email}
                             onChange={this.handleChange}
                         />
+                    </div>
+                    <div className="formField">
+                        <label className="formFieldLabel" htmlFor="password">
+                            Password
+                        </label>
+                        <input type="password" id="password" className="formFieldInput" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </div>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="physical_therapist">
@@ -138,7 +155,7 @@ export default class SignUpForm extends Component {
                     </div>
 
                     <div className="formField">
-                        <button className="formFieldButton">Sign Up</button>{" "}
+                        <button className="formFieldButton" onClick={(e) => this.handleSubmit(e)} >Sign Up</button>{" "}
                         <Link to="/login" className="formFieldLink">
                             I'm already member
                         </Link>

@@ -25,14 +25,14 @@ namespace Recovery_Backend_Data.Data
             return diets;
         }
         
-        public async Task<RegisterModel> UpdateUserDiet(DietModel diet)
-        {
-            RegisterModel user = new RegisterModel();
-            user.Diet = diet;
-            await _context.SaveChangesAsync();
+        //public async Task<RegisterModel> UpdateUserDiet(DietModel diet)
+        //{
+        //    RegisterModel user = new RegisterModel();
+        //    user.Diet = diet;
+        //    await _context.SaveChangesAsync();
             
-            return user;
-        }
+        //    return user;
+        //}
 
         public async Task<DietModel> GetDiet(int id)
         {
