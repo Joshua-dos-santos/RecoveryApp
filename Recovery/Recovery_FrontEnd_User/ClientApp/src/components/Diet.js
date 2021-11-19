@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Diet.css'
-import { Login } from '../pages/Login';
 
 export class Diets extends Component {
     static displayName = Diets.name;
@@ -19,19 +18,6 @@ export class Diets extends Component {
     componentDidMount() {
         this.populateData();
     }
-
-    //setDiet = event => {
-    //    event.preventDefault();
-    //    var token = localStorage.getItem("Key");
-    //    axios({
-    //        method: 'post',
-    //        url: 'https://localhost:44307/api/diets/DietList',
-    //        dataType: 'json',
-    //        data: diets
-    //    }).then(data => console.log(data));
-
-    /*   }*/
-
 
     static renderTable(diets) {
         return (

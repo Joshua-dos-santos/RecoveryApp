@@ -7,7 +7,7 @@ import { Diets } from './components/Diet';
 import './custom.css'
 import SignInForm from './pages/SignInForm';
 import SignUpForm from './pages/SignUpForm';
-import { Login } from './pages/Login';
+import { Exercises } from './components/Exercises';
 
 
 export default class App extends Component {
@@ -20,7 +20,8 @@ export default class App extends Component {
                 <Route path='/diets' component={Diets} />
                 <Route path='/fetch-data' component={FetchData} />
                 <Route path="/login" component={SignInForm} />
-                <Route path="/register" component={SignUpForm}/>
+                <Route path="/register" component={SignUpForm} />
+                <Route path="/exercises" component={Exercises} />
             </Layout>
         );
     }
