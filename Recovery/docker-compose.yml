@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  recovery_backend:
+    image: ${DOCKER_REGISTRY-}recoverybackend
+    build:
+      context: .
+      dockerfile: Recovery_BackEnd/Dockerfile
+     

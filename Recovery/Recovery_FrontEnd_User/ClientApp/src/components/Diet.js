@@ -41,7 +41,7 @@ export class Diets extends Component {
                                 <td>{diet.nutrition.nutrients[2].amount}g</td>
                                 <td>{diet.nutrition.nutrients[3].amount}g</td>
                                 <td>{diet.nutrition.nutrients[4].amount}g</td>
-                                <td><button /*onClick={(e) => this.renderTable(e)}*/>Choose Meal</button></td>
+                                <td><a href="#" class="btn btn-primary">Choose Meal</a></td>
                             </tr>
                         )}
                     </tbody>

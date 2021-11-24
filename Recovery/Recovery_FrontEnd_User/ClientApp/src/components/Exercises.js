@@ -30,7 +30,7 @@ export class Exercises extends Component {
                                 <div className="card-body">
                                     <iframe className="overflow-hidden" src={exercise.gifUrl.slice(0, 4) + "s" + exercise.gifUrl.slice(4)} width="500" height="360"></iframe>
                                     <h5 className="card-title">{exercise.name }</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p className="card-text"></p>
                                     <a href="#" class="btn btn-primary">Go somewhere</a>
                                 </div>
                             </div>
@@ -69,7 +69,6 @@ export class Exercises extends Component {
             }
         })
             .then(function (response) {
-                console.log(response.data);
                 self.setState({ exercises: response.data, loading: false });
             }).catch(function (error) {
                 console.error(error);
