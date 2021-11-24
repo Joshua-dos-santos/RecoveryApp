@@ -22,9 +22,9 @@ namespace Recovery_Backend_Data.Data
             _injuryData = new InjuryData(context);
         }
 
-        public RegisterModel GetUserByLogin(string email, string password)
+        public async Task<RegisterModel> GetUserByLogin(string email, string password)
         {
-            var user =  _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
+            var user = await _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefaultAsync();
 
             return user;
         }
@@ -35,7 +35,7 @@ namespace Recovery_Backend_Data.Data
             return user;
         }
 
-        public RegisterModel Register(RegisterModel user)
+        public async Task<RegisterModel> Register(RegisterModel user)
         {
             user.User_Key = Utilities.RandomString();
             var newUser = new RegisterModel()
@@ -55,8 +55,8 @@ namespace Recovery_Backend_Data.Data
                 Training_Schedule = user.Training_Schedule
             };
 
-            _context.usermodel.Add(newUser);
-            _context.SaveChanges();
+            await _context.usermodel.AddAsync(newUser);
+            await _context.SaveChangesAsync();
             return newUser;
         }
 
