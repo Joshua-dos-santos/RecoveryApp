@@ -17,25 +17,25 @@ namespace Recovery_Backend_Data.Data
             _context = context;
         }
 
-        public PTModel GetPTByID(int? key)
+        public async Task<PTModel> GetPTByID(int? key)
         {
-            var physical_therapist = _context.physical_therapist.Where(m => m.Unique_ID == key).FirstOrDefault();
+            var physical_therapist = await _context.physical_therapist.Where(m => m.Unique_ID == key).FirstOrDefaultAsync();
             return physical_therapist;
         }
 
-        public PTModel GetPTByLogin(string email, string password, string key)
+        public async Task<PTModel> GetPTByLogin(string email, string password, string key)
         {
-            var physical_therapist = _context.physical_therapist.Where(m => m.Email == email && m.Password == password && m.PT_Key == key).FirstOrDefault();
+            var physical_therapist = await _context.physical_therapist.Where(m => m.Email == email && m.Password == password && m.PT_Key == key).FirstOrDefaultAsync();
             return physical_therapist;
         }
 
-        public List<RegisterModel> GetUsersByPT(int id)
+        public  async Task<List<RegisterModel>> GetUsersByPT(int id)
         {
-            var users = _context.usermodel.Where(m => m.Physical_Therapist == id).ToList();
+            var users =await _context.usermodel.Where(m => m.Physical_Therapist == id).ToListAsync();
             return users;
         }
 
-        public PTModel RegisterPT(PTModel ptModel)
+        public async Task<PTModel> RegisterPT(PTModel ptModel)
         {
             ptModel.PT_Key = Utilities.RandomString();
             var newPt = new PTModel()
@@ -45,12 +45,12 @@ namespace Recovery_Backend_Data.Data
                 Last_Name = ptModel.Last_Name,
                 Birthdate = ptModel.Birthdate,
                 Email = ptModel.Email,
-                Password = Utilities.HashPassword(ptModel.Password),
+                Password = ptModel.Password,
                 PT_Key = ptModel.PT_Key
             };
 
-            _context.physical_therapist.Add(newPt);
-            _context.SaveChanges();
+            await _context.physical_therapist.AddAsync(newPt);
+            await _context.SaveChangesAsync();
             return newPt;
         }
     }

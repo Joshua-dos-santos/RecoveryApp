@@ -26,7 +26,7 @@ namespace Recovery_BackEnd.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> LoginPT([FromBody] PTModel pTModel)
         {
-            var currentPT = _ptData.GetPTByLogin(pTModel.Email, pTModel.Password, pTModel.PT_Key);
+            var currentPT = await _ptData.GetPTByLogin(pTModel.Email, pTModel.Password, pTModel.PT_Key);
 
             if (currentPT != null)
             {
@@ -54,5 +54,17 @@ namespace Recovery_BackEnd.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RegisterPT(PTModel physical_therapist)
+        {
+            return Ok(await _ptData.RegisterPT(physical_therapist));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers(int PtID)
+        {
+            var users = await _ptData.GetUsersByPT(PtID);
+            return Ok(users);
+        }
     }
 }
