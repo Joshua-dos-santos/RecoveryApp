@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Interfaces
 {
-    public interface DietInterface
+    public interface IDietInterface
     {
         public Task<List<DietModel>> GetDietList();
         public Task<RegisterModel> UpdateUserDiet(DietModel diet);

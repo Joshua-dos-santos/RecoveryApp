@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Recovery_Backend_Data.Data
 {
-    public class DietData : DietInterface
+    public class DietData : IDietInterface
     {
         private readonly RecoveryDBContext _context;
         private readonly AccountData _accountData;
@@ -40,24 +40,21 @@ namespace Recovery_Backend_Data.Data
             return diet;
         }
 
-        public async Task<DietModel> StoreDiets(List<DietModel> diets)
+        public async Task<DietModel> StoreDiets(DietModel diets)
         {
-            for (int i = 0; i <= diets.Count(); i++)
-            {
                 var newDiet = new DietModel()
                 {
-                    Unique_ID = diets[i].Unique_ID,
-                    Meal = diets[i].Meal,
-                    Protein = diets[i].Protein,
-                    Fats = diets[i].Fats,
-                    Carbohydrates = diets[i].Carbohydrates,
-                    Calories = diets[i].Calories,
-                    Fibers = diets[i].Fibers
+                    Unique_ID = diets.Unique_ID,
+                    Meal = diets.Meal,
+                    Protein = diets.Protein,
+                    Fats = diets.Fats,
+                    Carbohydrates = diets.Carbohydrates,
+                    Calories = diets.Calories,
+                    Fibers = diets.Fibers
                 };
                 await _context.diet.AddAsync(newDiet);
                 await _context.SaveChangesAsync();
-            }
-            return diets[0];
+            return diets;
         }
     }
 }
