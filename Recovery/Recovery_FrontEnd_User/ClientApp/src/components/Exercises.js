@@ -11,18 +11,20 @@ export class Exercises extends Component {
 
         this.state = {
             exercises: [],
+            part_of_body: "back",
 
             loading: false
         };
-
+        this.changeFilter = this.changeFilter.bind(this);
     }
     componentDidMount() {
         this.populateData();
     }
 
-    static render(exercises) {
+     static render(exercises) {
         return (
             <body>
+                
                 <div className="row">
                     {exercises.map(exercise =>
                         <div className="col-sm-6">
@@ -44,17 +46,33 @@ export class Exercises extends Component {
     }
 
     render() {
-        let contents = this.state.loading
+        var self = this
+        let waistEx = self.state.exercises.filter(function (bodypart) {
+            return bodypart.bodyPart == self.state.part_of_body
+        });
+        let contents = self.state.loading
             ? <p><em>Loading...</em></p>
-            : Exercises.render(this.state.exercises)
-
+            : Exercises.render(waistEx)
         return (
             <div>
-                <h1 id="tableLabel">Diets</h1>
-                <p>Choose your diet meal</p>
+                <h1 id="tableLabel">Exercises</h1>
+                <p>Choose your exercise</p>
+                <div id="myBtnContainer">
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "waist" })}> Waist</button>
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "back" })}> Back</button>
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "chest" })}> Chest</button>
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "upper legs" })}> Upper Legs</button>
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "upper arms" })}> Upper Arms</button>
+                    <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "cardio" })}> Cardio</button>
+                </div>
                 {contents}
             </div>
         )
+    }
+
+    changeFilter = function(filter){
+        this.setState({ part_of_body: filter })
+        console.log(filter)
     }
 
     populateData = async () => {

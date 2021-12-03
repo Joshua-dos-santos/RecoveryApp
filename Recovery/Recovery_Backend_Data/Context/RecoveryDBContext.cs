@@ -10,6 +10,11 @@ namespace Recovery_Backend_Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RecoveryDBContext).Assembly);
+        }
 
         public DbSet<RegisterModel> usermodel { get; set; }
         public DbSet<PTModel> physical_therapist { get; set; }

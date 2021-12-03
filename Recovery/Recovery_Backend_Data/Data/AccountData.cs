@@ -13,19 +13,14 @@ namespace Recovery_Backend_Data.Data
     public class AccountData : AccountInterface
     {
         private readonly RecoveryDBContext _context;
-        private readonly PTData _PtData;
-        private readonly InjuryData _injuryData;
         public AccountData(RecoveryDBContext context)
         {
             _context = context;
-            _PtData = new PTData(context);
-            _injuryData = new InjuryData(context);
         }
 
         public async Task<RegisterModel> GetUserByLogin(string email, string password)
         {
             var user = await _context.usermodel.Where(m => m.Email == email && m.Password == password).FirstOrDefaultAsync();
-
             return user;
         }
 

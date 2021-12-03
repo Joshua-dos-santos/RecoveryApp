@@ -69,7 +69,7 @@ export default class SignInForm extends Component {
         var self = this;
         axios({
             method: 'post',
-            url: 'https://localhost:44307/Account/Login/Login',
+            url: 'http://localhost:5000/Account/Login/Login',
             data: { email, password }
         }).then(token => this.setSession(token)).catch(function (error) {
             if (error.message == "Request failed with status code 401") {
@@ -121,7 +121,7 @@ export default class SignInForm extends Component {
                     </div>
 
                     <div className="formField">
-                        <a href="https://localhost:44388/login">
+                        <a href="https://localhost:5000/login">
                             <button className="formFieldButton" onClick={(e) => this.handleLogin(e)}>Sign In</button>
                         </a>
                         <Link className="m-2 registerlink" to="/register" id="registerLink">No account yet? Register here!</Link>

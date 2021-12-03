@@ -1,4 +1,4 @@
-﻿-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import axios from 'axios';
 import './Diet.css'
 
@@ -13,39 +13,40 @@ export class Diets extends Component {
 
             loading: true
         };
-
     }
     componentDidMount() {
         this.populateData();
     }
 
+    
+
     static renderTable(diets) {
         return (
-                <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
-                    <thead>
-                        <tr>
-                            <th>Meal</th>
-                            <th>Calories</th>
-                            <th>Protein</th>
-                            <th>Fats</th>
-                            <th>Carbohydrates</th>
-                            <th>Fibers</th>
+            <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
+                <thead>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Calories</th>
+                        <th>Protein</th>
+                        <th>Fats</th>
+                        <th>Carbohydrates</th>
+                        <th>Fibers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {diets.results.map(diet =>
+                        <tr key={diet.id}>
+                            <td>{diet.title}</td>
+                            <td>{diet.nutrition.nutrients[0].amount}Kcal</td>
+                            <td>{diet.nutrition.nutrients[1].amount}g</td>
+                            <td>{diet.nutrition.nutrients[2].amount}g</td>
+                            <td>{diet.nutrition.nutrients[3].amount}g</td>
+                            <td>{diet.nutrition.nutrients[4].amount}g</td>
+                            <td><a href="#" class="btn btn-primary">Choose Meal</a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {diets.results.map(diet =>
-                            <tr key={diet.id}>
-                                <td>{diet.title}</td>
-                                <td>{diet.nutrition.nutrients[0].amount}Kcal</td>
-                                <td>{diet.nutrition.nutrients[1].amount}g</td>
-                                <td>{diet.nutrition.nutrients[2].amount}g</td>
-                                <td>{diet.nutrition.nutrients[3].amount}g</td>
-                                <td>{diet.nutrition.nutrients[4].amount}g</td>
-                                <td><a href="#" class="btn btn-primary">Choose Meal</a></td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                    )}
+                </tbody>
+            </table>
         )
     }
 
@@ -58,6 +59,7 @@ export class Diets extends Component {
             <div>
                 <h1 id="tableLabel">Diets</h1>
                 <p>Choose your diet meal</p>
+                
                 {contents}
             </div>
         )
