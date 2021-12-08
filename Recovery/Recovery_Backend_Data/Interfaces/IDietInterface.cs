@@ -10,6 +10,6 @@ namespace Recovery_Backend_Data.Interfaces
     public interface IDietInterface
     {
         public Task<List<DietModel>> GetDietList();
-        public Task<RegisterModel> UpdateUserDiet(DietModel diet);
+        public Task<RegisterModel> UpdateUserDiet(DietModel diet, int userID);
     }
 }

@@ -12,7 +12,6 @@ export class Exercises extends Component {
         this.state = {
             exercises: [],
             part_of_body: "back",
-
             loading: false
         };
         this.changeFilter = this.changeFilter.bind(this);
@@ -56,6 +55,7 @@ export class Exercises extends Component {
         return (
             <div>
                 <h1 id="tableLabel">Exercises</h1>
+                <h2>{this.state.part_of_body}</h2>
                 <p>Choose your exercise</p>
                 <div id="myBtnContainer">
                     <button class="btn btn-primary" onClick={() => this.setState({ part_of_body: "waist" })}> Waist</button>

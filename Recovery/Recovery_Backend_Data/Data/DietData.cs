@@ -25,9 +25,9 @@ namespace Recovery_Backend_Data.Data
             return diets;
         }
 
-        public async Task<RegisterModel> UpdateUserDiet(DietModel diet)
+        public async Task<RegisterModel> UpdateUserDiet(DietModel diet, int userID)
         {
-            RegisterModel user = new RegisterModel();
+            RegisterModel user = await _context.usermodel.Where(m => m.Unique_ID == userID).FirstOrDefaultAsync();
             user.Diet = diet.Unique_ID;
             await _context.SaveChangesAsync();
 

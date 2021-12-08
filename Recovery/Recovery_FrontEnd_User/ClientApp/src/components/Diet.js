@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
 import './Diet.css'
+import { data } from 'jquery';
 
 export class Diets extends Component {
     static displayName = Diets.name;
@@ -10,14 +11,31 @@ export class Diets extends Component {
 
         this.state = {
             diets: [],
-
+            meal: '',
+            calories: '',
+            protein: '',
+            fats: '',
+            carbohydrates: '',
+            fibers: '',
             loading: true
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
         this.populateData();
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        const mealID = this.state.diets.results.id
+        console.log(mealID);
+        //axios({
+        //    method: 'post',
+        //    url: 'https://localhost:5000/api/diets/UpdateMeal',
+        //    dataType: "json",
+        //    data: mealID
+        //}).then(data => console.log(data));
+    }
     
 
     static renderTable(diets) {
@@ -42,7 +60,7 @@ export class Diets extends Component {
                             <td>{diet.nutrition.nutrients[2].amount}g</td>
                             <td>{diet.nutrition.nutrients[3].amount}g</td>
                             <td>{diet.nutrition.nutrients[4].amount}g</td>
-                            <td><a href="#" class="btn btn-primary">Choose Meal</a></td>
+                            <td><button class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Choose Meal</button></td>
                         </tr>
                     )}
                 </tbody>
