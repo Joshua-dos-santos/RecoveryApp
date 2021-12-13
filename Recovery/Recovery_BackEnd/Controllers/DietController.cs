@@ -33,9 +33,9 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("StoreMeals")]
-        public async Task<IActionResult> StoreMeals([FromBody]DietModel diet)
+        public async Task<IActionResult> StoreMeals([FromQuery]List<DietModel> diets)
         {   
-            return Ok(await _dietData.StoreDiets(diet));
+            return Ok(await _dietData.StoreDiets(diets));
         }
     }
 }

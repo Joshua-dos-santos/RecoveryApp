@@ -11,7 +11,7 @@ export class Diets extends Component {
 
         this.state = {
             diets: [],
-            meal: '',
+            meals: [],
             calories: '',
             protein: '',
             fats: '',
@@ -20,6 +20,7 @@ export class Diets extends Component {
             loading: true
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.storeMeals = this.storeMeals.bind(this);
     }
     componentDidMount() {
         this.populateData();
@@ -36,6 +37,7 @@ export class Diets extends Component {
         //    data: mealID
         //}).then(data => console.log(data));
     }
+
     
 
     static renderTable(diets) {
@@ -76,7 +78,7 @@ export class Diets extends Component {
         return (
             <div>
                 <h1 id="tableLabel">Diets</h1>
-                <p>Choose your diet meal</p>
+                <p>Choose your diet meal</p><button class="btn btn-primary" onClick={(e) => this.storeMeals(e)}>Choose Meal</button>
                 
                 {contents}
             </div>
@@ -94,5 +96,30 @@ export class Diets extends Component {
             self.setState({ diets: data.data, loading: false });
         }
         );
+    }
+
+    storeMeals = event => {
+        event.preventDefault();
+        var self = this;
+        for (var i = 0; i <= 19; i++) {
+            var mealToList = {
+                unique_ID: self.state.diets.results[i].id,
+                meal: self.state.diets.results[i].title,
+                protein: self.state.diets.results[i].nutrition.nutrients[1].amount,
+                fats: self.state.diets.results[i].nutrition.nutrients[2].amount,
+                carbohydrates: self.state.diets.results[i].nutrition.nutrients[3].amount,
+                calories: self.state.diets.results[i].nutrition.nutrients[0].amount,
+                fibers: self.state.diets.results[i].nutrition.nutrients[4].amount
+            }
+            console.log(mealToList)
+            self.state.meals.push(mealToList);
+        }
+        const mealList = self.state.meals
+        axios({
+            method: 'post',
+            url: 'https://localhost:5000/api/diets/StoreMeals',
+            data: mealList 
+        }).then(data => console.log(data));
+
     }
 }

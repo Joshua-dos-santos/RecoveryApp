@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>4159e445-efa1-421c-8895-207aeb6802c1</ProjectGuid>
+    <ProjectGuid>0371cc52-889e-4ccd-838b-e24671c416d3</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>recovery_backend</DockerServiceName>
