@@ -32,15 +32,5 @@ services:
       environment:
         PMA_HOST: db 
      
-  recovery_frontend_user:
-    image: ${DOCKER_REGISTRY-}recoveryfrontenduser
-    build:
-      context: .
-      dockerfile: Recovery_FrontEnd_User/Dockerfile
-    ports:
-      - "3000:80" 
-
 volumes:
   dbdata: 
-
-

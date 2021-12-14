@@ -45,7 +45,7 @@ export default class SignInForm extends Component {
     }
 
     setSession = (token) => {
-        ReactSession.set("loggedin", true);
+        localStorage.setItem("loggedin", true);
         ReactSession.set("token", token.data);
         localStorage.setItem("Key", token);
         this.setState({ token: token.data, loggedIn: true });
@@ -82,7 +82,7 @@ export default class SignInForm extends Component {
     render() {
         if (ReactSession.get("loggedin")) {
             return (
-                <Redirect exact to="/diets" />
+                <Redirect exact to="/" />
             )
 
         }

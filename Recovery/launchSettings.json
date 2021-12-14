@@ -5,8 +5,7 @@
       "serviceActions": {
         "db": "StartWithoutDebugging",
         "pma": "StartWithoutDebugging",
-        "recovery_backend": "StartDebugging",
-        "recovery_frontend_user": "StartDebugging"
+        "recovery_backend": "StartDebugging"
       },
       "commandVersion": "1.0"
     }

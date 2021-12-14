@@ -75,7 +75,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpGet("GetUserByToken")]
-        public async Task<ActionResult> GetUserByToken([FromQuery] string jtoken)
+        public async Task<ActionResult> GetUserByToken( string jtoken)
         {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
             var user = JWTTokenHelper.VerifyToken(jtoken, _config);
             if (user is null)
