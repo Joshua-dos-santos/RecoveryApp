@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Recovery_Backend_Data;
 using Recovery_Backend_Data.Data;
@@ -8,6 +9,7 @@ using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,12 +21,14 @@ namespace Recovery_BackEnd.Controllers
     public class AccountController : Controller
     {
         private readonly AccountData _accountData;
+        private IConfiguration _config;
 
-        public AccountController(RecoveryDBContext context)
+        public AccountController(RecoveryDBContext context, IConfiguration config)
         {
             try
             {
                 _accountData = new AccountData(context);
+                _config = config;
             }
             catch(Exception e)
             {
@@ -68,6 +72,20 @@ namespace Recovery_BackEnd.Controllers
         public async Task<IActionResult> Register([FromBody]RegisterModel user)
         {
             return Ok(await _accountData.Register(user));
+        }
+
+        [HttpGet("GetUserByToken")]
+        public async Task<ActionResult> GetUserByToken([FromQuery] string jtoken)
+        {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
+            var user = JWTTokenHelper.VerifyToken(jtoken, _config);
+            if (user is null)
+            {
+                return NotFound();
+            }
+            int id = Convert.ToInt32(user.Claims.First().Value);
+            RegisterModel userById = await _accountData.GetUserByID(id);
+            
+            return Ok(userById);
         }
 
 

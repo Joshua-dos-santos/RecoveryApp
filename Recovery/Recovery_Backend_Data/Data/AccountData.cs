@@ -24,9 +24,9 @@ namespace Recovery_Backend_Data.Data
             return user;
         }
 
-        public RegisterModel GetUserByID(string key)
+        public async Task<RegisterModel> GetUserByID(int key)
         {
-            var user = _context.usermodel.Where(m => m.User_Key == key).FirstOrDefault();
+            var user = await _context.usermodel.Where(m => m.Unique_ID == key).FirstOrDefaultAsync();
             return user;
         }
 

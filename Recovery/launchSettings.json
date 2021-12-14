@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "serviceActions": {
+        "db": "StartWithoutDebugging",
+        "pma": "StartWithoutDebugging",
+        "recovery_backend": "StartDebugging",
+        "recovery_frontend_user": "StartDebugging"
+      },
+      "commandVersion": "1.0"
+    }
+  }
+}
