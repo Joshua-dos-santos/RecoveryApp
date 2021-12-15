@@ -25,7 +25,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("UpdateMeal")]
-        public async Task<IActionResult> UpdateUserMeal(int MealID, int UserID)
+        public async Task<IActionResult> UpdateMeal([FromQuery]int MealID,[FromQuery] int UserID)
         {
             DietModel diet = await _dietData.GetDiet(MealID);
             RegisterModel user = await _dietData.UpdateUserDiet(diet, UserID);
@@ -33,7 +33,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("StoreMeals")]
-        public async Task<IActionResult> StoreMeals([FromQuery]List<DietModel> diets)
+        public async Task<IActionResult> StoreMeals([FromBody]List<DietModel> diets)
         {   
             return Ok(await _dietData.StoreDiets(diets));
         }

@@ -63,7 +63,7 @@ export default class SignUpForm extends Component {
         var userdata = user;
         axios({
             method: 'post',
-            url: 'https://localhost:5000/Account/Register/Register',
+            url: 'http://localhost:5000/Account/Register/Register',
             dataType: "json",
             data: userdata
         }).then(data => console.log(data));

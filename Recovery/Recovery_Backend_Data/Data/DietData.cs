@@ -42,7 +42,14 @@ namespace Recovery_Backend_Data.Data
 
         public async Task<DietModel> StoreDiets(List<DietModel> diets)
         {
-            for(int i = 0; i <= diets.Count(); i++)
+            var meals = from m in _context.diet
+                          select m;
+            foreach (var meal in meals)
+            {
+                _context.diet.Remove(meal);
+            }
+            _context.SaveChanges();
+            for (int i = 0; i <= diets.Count(); i++)
             {
                 var newDiet = new DietModel()
                 {

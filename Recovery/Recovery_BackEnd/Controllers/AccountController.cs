@@ -44,8 +44,8 @@ namespace Recovery_BackEnd.Controllers
             Console.WriteLine(currentUser);
             if (currentUser != null)
             {
-                var mySecret = "asdv234234^&%&^%&^hjsdfb2%%%";
-                var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(mySecret));
+                _config["Secret"] = "asdv234234^&%&^%&^hjsdfb2%%%";
+                var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Secret"]));
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var tokenDescriptor = new SecurityTokenDescriptor
@@ -75,7 +75,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpGet("GetUserByToken")]
-        public async Task<ActionResult> GetUserByToken( string jtoken)
+        public async Task<ActionResult> GetUserByToken([FromQuery] string jtoken)
         {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
             var user = JWTTokenHelper.VerifyToken(jtoken, _config);
             if (user is null)

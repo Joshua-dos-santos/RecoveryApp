@@ -5,7 +5,7 @@ namespace Recovery_Models.Models
     public class RegisterModel
     {
         [Key]
-        public int? Unique_ID { get; set; }
+        public int Unique_ID { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
         public string Birthdate { get; set; }
