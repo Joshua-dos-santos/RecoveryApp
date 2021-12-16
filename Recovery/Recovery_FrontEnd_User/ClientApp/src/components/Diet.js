@@ -61,7 +61,6 @@ export class Diets extends Component {
         axios({
             method: 'post',
             url: 'http://localhost:5000/api/diets/UpdateMeal',
-            dataType: "json",
             data: { mealID, userID }
         }).then(data => console.log(data));
     }

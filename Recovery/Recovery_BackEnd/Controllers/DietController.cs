@@ -25,7 +25,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("UpdateMeal")]
-        public async Task<IActionResult> UpdateMeal([FromQuery]int MealID,[FromQuery] int UserID)
+        public async Task<IActionResult> UpdateMeal([FromBody]int MealID,[FromBody] int UserID)
         {
             DietModel diet = await _dietData.GetDiet(MealID);
             RegisterModel user = await _dietData.UpdateUserDiet(diet, UserID);
