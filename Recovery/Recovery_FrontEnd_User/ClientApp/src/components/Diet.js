@@ -36,7 +36,15 @@ export class Diets extends Component {
         this.OnLoad();
     }
 
-    OnLoad = (e) => {
+    onClickAction = () => {
+        console.log("OK")
+        const meals = this.diets
+        this.handleSubmit();
+        this.setState({ mealId: meals.results.id });
+        console.log(this.mealId)
+    }
+
+    OnLoad(e) {
         var self = this;
         console.log(localStorage.getItem("token"))
         axios({
@@ -51,18 +59,19 @@ export class Diets extends Component {
         });
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = async => {
         var self = this;
-        const mealID = 715594
+        const mealID = localStorage.getItem("mealId")
         const userID = self.state.userData.unique_ID
         console.log(mealID);
         console.log(userID)
         axios({
-            method: 'post',
+            method: 'POST',
             url: 'http://localhost:5000/api/diets/UpdateMeal',
-            data: { mealID, userID }
-        }).then(data => console.log(data));
+            params: { mealID, userID }
+        }).then(function (data) {
+            console.log(data.data)
+        });
     }
 
 
@@ -89,6 +98,7 @@ export class Diets extends Component {
                             <td>{diet.nutrition.nutrients[2].amount}g</td>
                             <td>{diet.nutrition.nutrients[3].amount}g</td>
                             <td>{diet.nutrition.nutrients[4].amount}g</td>
+                            <td><input type="radio" value={diet.id} name="meal" onChange={() => localStorage.setItem("mealId", diet.id) }/></td>
                             
                         </tr>
                     )}
@@ -111,7 +121,7 @@ export class Diets extends Component {
             <div>
                 <h1 id="tableLabel">Diets</h1>
                 <p>Choose your diet meal</p><button class="btn btn-primary" onClick={(e) => this.storeMeals(e)}>Store Meal</button>
-                <button class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Choose Meal</button>
+                <button class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Submit Meal</button>
 
                 {contents}
             </div>
