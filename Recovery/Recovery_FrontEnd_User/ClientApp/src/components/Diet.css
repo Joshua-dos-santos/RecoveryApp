@@ -2,7 +2,7 @@
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    border-radius: 25px;
+    border-radius: 50px;
 }
 
 #meals td, #customers th {

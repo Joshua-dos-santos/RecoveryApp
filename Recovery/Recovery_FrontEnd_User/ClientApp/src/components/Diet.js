@@ -91,6 +91,7 @@ export class Diets extends Component {
                             <th>Fats</th>
                             <th>Carbohydrates</th>
                             <th>Fibers</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
