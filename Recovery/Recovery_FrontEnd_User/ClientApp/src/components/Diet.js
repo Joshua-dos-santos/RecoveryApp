@@ -51,9 +51,15 @@ export class Diets extends Component {
         });
     }
 
+<<<<<<< Updated upstream
     handleSubmit = async => {
         var self = this;
         const mealID = localStorage.getItem("mealId")
+=======
+    handleSubmit = (mealId) => {
+        var self = this;
+        const mealID = mealId
+>>>>>>> Stashed changes
         const userID = self.state.userData.unique_ID
         console.log(mealID);
         console.log(userID)
@@ -67,6 +73,7 @@ export class Diets extends Component {
     }
 
 
+<<<<<<< Updated upstream
 
     static renderTable(diets) {
         return (
@@ -103,6 +110,9 @@ export class Diets extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : Diets.renderTable(this.state.diets)
+=======
+    render() { 
+>>>>>>> Stashed changes
 
         if (!localStorage.getItem("loggedin")) {
             return (
@@ -115,7 +125,36 @@ export class Diets extends Component {
                 <p>Choose your diet meal</p><button class="btn btn-primary" onClick={(e) => this.storeMeals(e)}>Store Meal</button>
                 <button class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Submit Meal</button>
 
+<<<<<<< Updated upstream
                 {contents}
+=======
+                <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
+                    <thead>
+                        <tr>
+                            <th>Meal</th>
+                            <th>Calories</th>
+                            <th>Protein</th>
+                            <th>Fats</th>
+                            <th>Carbohydrates</th>
+                            <th>Fibers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.diets.map(diet =>
+                            <tr key={diet.id}>
+                                <td>{diet.title}</td>
+                                <td>{diet.nutrition.nutrients[0].amount}Kcal</td>
+                                <td>{diet.nutrition.nutrients[1].amount}g</td>
+                                <td>{diet.nutrition.nutrients[2].amount}g</td>
+                                <td>{diet.nutrition.nutrients[3].amount}g</td>
+                                <td>{diet.nutrition.nutrients[4].amount}g</td>
+                                <td><button class="btn btn-primary" onClick={(e) => this.handleSubmit(diet.id)}>Submit Meal</button></td>
+
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+>>>>>>> Stashed changes
             </div>
         )
     }
@@ -127,7 +166,7 @@ export class Diets extends Component {
             url: 'https://api.spoonacular.com/recipes/complexSearch?apiKey=47bc84e2dca9462ea4524639a51ea75d&minProtein=10&minCalories=50&minFat=1&minFiber=0&minCarbs=10&number=10'
         }).then(function (data) {
             console.log(data.data);
-            self.setState({ diets: data.data, loading: false });
+            self.setState({ diets: data.data.results, loading: false });
         }
         );
     }
