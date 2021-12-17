@@ -36,14 +36,6 @@ export class Diets extends Component {
         this.OnLoad();
     }
 
-    onClickAction = () => {
-        console.log("OK")
-        const meals = this.diets
-        this.handleSubmit();
-        this.setState({ mealId: meals.results.id });
-        console.log(this.mealId)
-    }
-
     OnLoad(e) {
         var self = this;
         console.log(localStorage.getItem("token"))

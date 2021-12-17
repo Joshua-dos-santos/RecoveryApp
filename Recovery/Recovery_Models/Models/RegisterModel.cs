@@ -19,6 +19,6 @@ namespace Recovery_Models.Models
         public int Physical_Therapist { get; set; }
         public int? Injury { get; set; }
         public int? Diet { get; set; }
-        public int? Training_Schedule { get; set; }
+        public int? Exercise { get; set; }
     }
 }

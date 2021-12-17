@@ -14,7 +14,6 @@ export class Exercises extends Component {
             part_of_body: "back",
             loading: false
         };
-        this.changeFilter = this.changeFilter.bind(this);
     }
     componentDidMount() {
         this.populateData();
@@ -46,6 +45,7 @@ export class Exercises extends Component {
 
     render() {
         var self = this
+        console.log(self.state.exercises)
         let waistEx = self.state.exercises.filter(function (bodypart) {
             return bodypart.bodyPart == self.state.part_of_body
         });
@@ -68,11 +68,6 @@ export class Exercises extends Component {
                 {contents}
             </div>
         )
-    }
-
-    changeFilter = function(filter){
-        this.setState({ part_of_body: filter })
-        console.log(filter)
     }
 
     populateData = async () => {

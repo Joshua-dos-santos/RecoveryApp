@@ -47,7 +47,7 @@ namespace Recovery_Backend_Data.Data
                 Physical_Therapist = user.Physical_Therapist,
                 Injury = user.Injury,
                 Diet = user.Diet,
-                Training_Schedule = user.Training_Schedule
+                Exercise = user.Exercise
             };
 
             await _context.usermodel.AddAsync(newUser);
