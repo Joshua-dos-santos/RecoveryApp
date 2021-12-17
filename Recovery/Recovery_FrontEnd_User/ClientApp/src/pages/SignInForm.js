@@ -4,6 +4,7 @@ import "./Login.css";
 import axios from 'axios'
 import ReactSession from 'react-client-session/dist/ReactSession';
 import { Redirect } from 'react-router-dom';
+import { Card } from 'reactstrap';
 
 
 export default class SignInForm extends Component {
@@ -88,7 +89,7 @@ export default class SignInForm extends Component {
         }
 
         return (
-            <div className="formCenter">
+            <div className="formCenter"> 
                 <form className="formFields" onSubmit={this.handleSubmit}>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="email">

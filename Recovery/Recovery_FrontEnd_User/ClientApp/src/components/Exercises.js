@@ -26,9 +26,9 @@ export class Exercises extends Component {
                 <div className="row">
                     {exercises.map(exercise =>
                         <div className="col-sm-6">
-                            <div className="card">
+                            <div className="card" style={{ maxWidth: "300px" }}>
                                 <div className="card-body">
-                                    <iframe className="overflow-hidden" src={exercise.gifUrl.slice(0, 4) + "s" + exercise.gifUrl.slice(4)} width="500" height="360"></iframe>
+                                    <img className="overflow-hidden" style={{ maxHeight: "200px" }} src={exercise.gifUrl.slice(0, 4) + "s" + exercise.gifUrl.slice(4)} width="auto" height="auto"></img>
                                     <h5 className="card-title">{exercise.name }</h5>
                                     <p className="card-text"></p>
                                     <a href="#" class="btn btn-primary">Go somewhere</a>

@@ -17,14 +17,4 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
-.logo-image {
-    width: 70px;
-    height: 46px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-top: -6px;
-}
-.navbar-brand {
-    width: 126px;
-    height: 72px;
-}
+

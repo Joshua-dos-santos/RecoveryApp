@@ -10,9 +10,6 @@ header{
     background-color: darkblue;
 }
 body{
-    background-color: royalblue;
-    background-image: url(../src/images/background.jpg);
-    background-size: cover;
 }
 
 .btn-primary {
