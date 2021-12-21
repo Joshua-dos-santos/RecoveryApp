@@ -1,4 +1,5 @@
-﻿using Recovery_Models.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,19 @@ namespace Recovery_Backend_Data.Data
                 await _context.SaveChangesAsync();
             }
             return exercises[1];
+        }
+        public async Task<RegisterModel> UpdateUserExercise(ExerciseModel exercise, int userID)
+        {
+            RegisterModel user = await _context.usermodel.Where(m => m.Unique_ID == userID).FirstOrDefaultAsync();
+            user.Exercise = exercise.Unique_ID;
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+        public async Task<ExerciseModel> GetExercise(int id)
+        {
+            var exercise = await _context.exercise.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
+            return exercise;
         }
     }
 }

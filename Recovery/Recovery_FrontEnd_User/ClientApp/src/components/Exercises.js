@@ -2,6 +2,7 @@
 import axios from 'axios';
 import './Exercises.css'
 import 'bootstrap/dist/css/bootstrap.css';
+import { Redirect } from 'react-router-dom';
 
 export class Exercises extends Component {
     static displayName = Exercises.name;
@@ -12,16 +13,57 @@ export class Exercises extends Component {
         this.state = {
             exercises: [],
             training: [],
+            userData: [],
+            jtoken: localStorage.getItem("token"),
+            loggedIn: false,
             part_of_body: "back",
             loading: false
         };
+        this.OnLoad = this.OnLoad.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.storeExercises = this.storeExercises.bind(this);
     }
     componentDidMount() {
         this.populateData();
+        this.OnLoad();
+    }
+
+    OnLoad(e) {
+        var self = this;
+        console.log(localStorage.getItem("token"))
+        axios({
+            method: 'GET',
+            url: 'http://localhost:5000/Account/GetUserByToken/GetUserByToken',
+            params: {
+                jtoken: localStorage.getItem("token")
+            }
+        }).then((data) => {
+            console.log(data);
+            self.setState({ userData: data.data }, () => { console.log(self.state.userData) });
+        });
+    }
+
+    handleSubmit = (exerciseId) => {
+        var self = this;
+        const exerciseID = exerciseId
+        const userID = self.state.userData.unique_ID
+        console.log(exerciseID);
+        console.log(userID)
+        axios({
+            method: 'POST',
+            url: 'http://localhost:5000/api/exercises/UpdateExercise',
+            params: { exerciseID, userID }
+        }).then(function (data) {
+            console.log(data.data)
+        });
     }
 
     render() {
+        if (!localStorage.getItem("loggedin")) {
+            return (
+                <Redirect to="/login" />
+            )
+        }
         var self = this
         console.log(self.state.training)
         let waistEx = self.state.training.filter(function (bodypart) {
@@ -55,7 +97,7 @@ export class Exercises extends Component {
                                         <img className="overflow-hidden" style={{ maxHeight: "200px" }} src={exercise.gifUrl.slice(0, 4) + "s" + exercise.gifUrl.slice(4)} width="auto" height="auto"></img>
                                         <h5 className="card-title">{exercise.name}</h5>
                                         <p className="card-text"></p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <button class="btn btn-primary" onClick={(e) => this.handleSubmit(exercise.id)}>Submit Exercise</button>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +110,6 @@ export class Exercises extends Component {
 
     populateData = async () => {
         var self = this;
-        localStorage.clear();
         axios({
             method: 'GET',
             url: 'https://exercisedb.p.rapidapi.com/exercises/equipment/body%20weight',
