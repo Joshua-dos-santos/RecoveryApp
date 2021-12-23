@@ -29,9 +29,9 @@ namespace Recovery_Backend_Data.Data
             return physical_therapist;
         }
 
-        public  async Task<List<RegisterModel>> GetUsersByPT(int id)
+        public  async Task<List<RegisterModel>> GetUsersByPT(string id)
         {
-            var users =await _context.usermodel.Where(m => m.Physical_Therapist == id).ToListAsync();
+            var users = await _context.usermodel.Where(m => m.Physical_Therapist == id).ToListAsync();
             return users;
         }
 

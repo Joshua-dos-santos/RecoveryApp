@@ -61,7 +61,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers(int PtID)
+        public async Task<IActionResult> GetAllUsers(string PtID)
         {
             var users = await _ptData.GetUsersByPT(PtID);
             return Ok(users);
