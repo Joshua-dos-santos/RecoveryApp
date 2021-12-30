@@ -70,7 +70,7 @@ export default class SignInForm extends Component {
         var self = this;
         axios({
             method: 'post',
-            url: 'http://localhost:5000/Account/Login/Login',
+            url: 'http://localhost:5000/PT/LoginPT/Login',
             data: { email, password }
         }).then(token => this.setSession(token)).catch(function (error) {
             if (error.message == "Request failed with status code 401") {

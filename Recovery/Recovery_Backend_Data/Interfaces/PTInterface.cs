@@ -10,7 +10,7 @@ namespace Recovery_Backend_Data.Interfaces
     public interface PTInterface
     {
         public Task<PTModel> GetPTByID(int? key);
-        public Task<PTModel> GetPTByLogin(string email, string password, string key);
+        public Task<PTModel> GetPTByLogin(string email, string password);
         public Task<List<RegisterModel>> GetUsersByPT(string id);
         public Task<PTModel> RegisterPT(PTModel ptModel);
     }

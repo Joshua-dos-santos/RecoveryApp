@@ -26,7 +26,7 @@ namespace Recovery_BackEnd.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> LoginPT([FromBody] PTModel pTModel)
         {
-            var currentPT = await _ptData.GetPTByLogin(pTModel.Email, pTModel.Password, pTModel.PT_Key);
+            var currentPT = await _ptData.GetPTByLogin(pTModel.Email, pTModel.Password);
 
             if (currentPT != null)
             {

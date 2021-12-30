@@ -23,9 +23,9 @@ namespace Recovery_Backend_Data.Data
             return physical_therapist;
         }
 
-        public async Task<PTModel> GetPTByLogin(string email, string password, string key)
+        public async Task<PTModel> GetPTByLogin(string email, string password)
         {
-            var physical_therapist = await _context.physical_therapist.Where(m => m.Email == email && m.Password == password && m.PT_Key == key).FirstOrDefaultAsync();
+            var physical_therapist = await _context.physical_therapist.Where(m => m.Email == email && m.Password == password).FirstOrDefaultAsync();
             return physical_therapist;
         }
 
