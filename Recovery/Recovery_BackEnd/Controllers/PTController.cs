@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Recovery_Backend_Data;
 using Recovery_Backend_Data.Data;
@@ -18,10 +19,12 @@ namespace Recovery_BackEnd.Controllers
     public class PTController : Controller
     {
         private readonly PTData _ptData;
+        private IConfiguration _config;
 
-        public PTController(RecoveryDBContext context)
+        public PTController(RecoveryDBContext context, IConfiguration config)
         {
             _ptData = new PTData(context);
+            _config = config;
         }
         [HttpPost("Login")]
         public async Task<IActionResult> LoginPT([FromBody] PTModel pTModel)
@@ -58,6 +61,20 @@ namespace Recovery_BackEnd.Controllers
         public async Task<IActionResult> RegisterPT(PTModel physical_therapist)
         {
             return Ok(await _ptData.RegisterPT(physical_therapist));
+        }
+
+        [HttpGet("GetPTByToken")]
+        public async Task<ActionResult> GetPTByToken([FromQuery] string jtoken)
+        {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
+            var user = JWTTokenHelper.VerifyToken(jtoken, _config);
+            if (user is null)
+            {
+                return NotFound();
+            }
+            int id = Convert.ToInt32(user.Claims.First().Value);
+            PTModel userById = await _ptData.GetPTByID(id);
+
+            return Ok(userById);
         }
 
         [HttpGet]

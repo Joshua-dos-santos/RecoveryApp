@@ -1,7 +1,34 @@
 import React, { Component } from 'react';
+import ReactFlexyTable from "react-flexy-table";
+import axios from 'axios'
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static displayName = Home.name;
+    constructor(props) {
+        super(props)
+        this.state = {
+            users: [],
+            trainer: [],
+            jtoken: localStorage.getItem("token"),
+            loggedIn: false
+        }
+        this.OnLoad = this.OnLoad.bind(this);
+    }
+
+    OnLoad(e) {
+        var self = this;
+        console.log(localStorage.getItem("token"))
+        axios({
+            method: 'GET',
+            url: 'http://localhost:5000/Account/GetPTByToken/GetPTByToken',
+            params: {
+                jtoken: localStorage.getItem("token")
+            }
+        }).then((data) => {
+            console.log(data);
+            self.setState({ trainer: data.data }, () => { console.log(self.state.trainer) });
+        });
+    }
 
   render () {
     return (
