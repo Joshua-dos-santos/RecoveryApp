@@ -22,6 +22,11 @@ namespace Recovery_Backend_Data.Data
             var physical_therapist = await _context.physical_therapist.Where(m => m.Unique_ID == key).FirstOrDefaultAsync();
             return physical_therapist;
         }
+        public async Task<PTModel> GetPTByKey(string key)
+        {
+            var physical_therapist = await _context.physical_therapist.Where(m => m.PT_Key == key).FirstOrDefaultAsync();
+            return physical_therapist;
+        }
 
         public async Task<PTModel> GetPTByLogin(string email, string password)
         {
@@ -29,7 +34,7 @@ namespace Recovery_Backend_Data.Data
             return physical_therapist;
         }
 
-        public  async Task<List<RegisterModel>> GetUsersByPT(string id)
+        public  async Task<List<RegisterModel>> GetUsersByPT(int id)
         {
             var users = await _context.usermodel.Where(m => m.Physical_Therapist == id).ToListAsync();
             return users;

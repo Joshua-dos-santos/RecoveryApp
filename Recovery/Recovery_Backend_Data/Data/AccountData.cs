@@ -13,9 +13,11 @@ namespace Recovery_Backend_Data.Data
     public class AccountData : AccountInterface
     {
         private readonly RecoveryDBContext _context;
+        private readonly PTData _ptData;
         public AccountData(RecoveryDBContext context)
         {
             _context = context;
+            _ptData = new PTData(context);
         }
 
         public async Task<RegisterModel> GetUserByLogin(string email, string password)

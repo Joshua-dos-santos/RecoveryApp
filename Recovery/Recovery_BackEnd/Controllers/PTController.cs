@@ -58,7 +58,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterPT(PTModel physical_therapist)
+        public async Task<IActionResult> RegisterPT([FromBody]PTModel physical_therapist)
         {
             return Ok(await _ptData.RegisterPT(physical_therapist));
         }
@@ -66,7 +66,7 @@ namespace Recovery_BackEnd.Controllers
         [HttpGet("GetPTByToken")]
         public async Task<ActionResult> GetPTByToken([FromQuery] string jtoken)
         {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
-            var user = JWTTokenHelper.VerifyToken(jtoken, _config);
+            var user = JWTTokenHelper.VerifyPTToken(jtoken, _config);
             if (user is null)
             {
                 return NotFound();
@@ -77,10 +77,10 @@ namespace Recovery_BackEnd.Controllers
             return Ok(userById);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllUsers(string PtID)
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers([FromQuery]string ptid)
         {
-            var users = await _ptData.GetUsersByPT(PtID);
+            var users = await _ptData.GetUsersByPT(Convert.ToInt32(ptid));
             return Ok(users);
         }
     }

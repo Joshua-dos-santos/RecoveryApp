@@ -16,7 +16,7 @@ namespace Recovery_Models.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string User_Key { get; set; }
-        public string Physical_Therapist { get; set; }
+        public int Physical_Therapist { get; set; }
         public int? Injury { get; set; }
         public int? Diet { get; set; }
         public int? Exercise { get; set; }

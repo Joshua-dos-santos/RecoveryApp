@@ -32,8 +32,8 @@ export class Diets extends Component {
         this.storeMeals = this.storeMeals.bind(this);
     }
     componentDidMount() {
-        this.populateData();
         this.OnLoad();
+        this.populateData();
     }
 
     OnLoad(e) {
