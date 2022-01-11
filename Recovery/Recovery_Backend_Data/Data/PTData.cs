@@ -12,9 +12,15 @@ namespace Recovery_Backend_Data.Data
     public class PTData : PTInterface
     {
         private readonly RecoveryDBContext _context;
+        private readonly InjuryData _injuryData;
+        private readonly DietData _dietData;
+        private readonly ExerciseData _exerciseData;
         public PTData(RecoveryDBContext context)
         {
             _context = context;
+            _injuryData = new InjuryData(context);
+            _dietData = new DietData(context);
+            _exerciseData = new ExerciseData(context);
         }
 
         public async Task<PTModel> GetPTByID(int? key)
@@ -34,10 +40,30 @@ namespace Recovery_Backend_Data.Data
             return physical_therapist;
         }
 
-        public  async Task<List<RegisterModel>> GetUsersByPT(int id)
+        public  async Task<List<UserListModel>> GetUsersByPT(int id)
         {
             var users = await _context.usermodel.Where(m => m.Physical_Therapist == id).ToListAsync();
-            return users;
+            var currentUsers = new List<UserListModel>();
+            foreach(var user in users)
+            {
+                UserListModel UpdatedUser = new UserListModel
+                {
+                    Unique_ID = user.Unique_ID,
+                    First_Name = user.First_Name,
+                    Last_Name = user.Last_Name,
+                    Birthdate = user.Birthdate,
+                    Height = user.Height,
+                    Weight = user.Weight,
+                    Email = user.Email,
+                    Password = user.Password,
+                    User_Key = user.User_Key,
+                    Injury = await _injuryData.GetInjuryByID(user.Injury),
+                    Diet = await _dietData.GetDietName(user.Diet),
+                    Exercise = await _exerciseData.GetExerciseName(user.Exercise)
+                };
+                currentUsers.Add(UpdatedUser);
+            }
+            return currentUsers;
         }
 
         public async Task<PTModel> RegisterPT(PTModel ptModel)

@@ -1,4 +1,5 @@
-﻿using Recovery_Backend_Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Recovery_Backend_Data.Interfaces;
 using Recovery_Models.Models;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,10 @@ namespace Recovery_Backend_Data.Data
             _context = context;  
         }
 
-        public InjuryModel GetInjuryByID(int? unique_id)
+        public async Task <string> GetInjuryByID(int? unique_id)
         {
-            var injury = _context.injury.Where(i => i.Unique_ID == unique_id).FirstOrDefault();
-            return injury;
+            var injury = await _context.injury.Where(i => i.Unique_ID == unique_id).FirstOrDefaultAsync();
+            return injury.Part_of_Body + injury.Description;
         }
     }
 }

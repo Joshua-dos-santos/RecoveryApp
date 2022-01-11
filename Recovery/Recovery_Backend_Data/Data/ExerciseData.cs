@@ -50,10 +50,16 @@ namespace Recovery_Backend_Data.Data
 
             return user;
         }
-        public async Task<ExerciseModel> GetExercise(int id)
+        public async Task<ExerciseModel> GetExercise(int? id)
         {
             var exercise = await _context.exercise.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
             return exercise;
+        }
+
+        public async Task<string> GetExerciseName(int? id)
+        {
+            var exercise = await _context.exercise.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
+            return exercise.Name;
         }
     }
 }

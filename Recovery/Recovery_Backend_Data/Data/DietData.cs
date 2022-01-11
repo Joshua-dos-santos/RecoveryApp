@@ -34,10 +34,16 @@ namespace Recovery_Backend_Data.Data
             return user;
         }
 
-        public async Task<DietModel> GetDiet(int id)
+        public async Task<DietModel> GetDiet(int? id)
         {
             var diet = await _context.diet.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
             return diet;
+        }
+
+        public async Task<string> GetDietName(int? id)
+        {
+            var diet = await _context.diet.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
+            return diet.Meal;
         }
 
         public async Task<DietModel> StoreDiets(List<DietModel> diets)
