@@ -58,9 +58,16 @@ namespace Recovery_Backend_Data.Data
         public async Task<bool> DeleteUser(int user)
         {
             RegisterModel deletedUser = await GetUserByID(user);
-            _context.usermodel.Remove(deletedUser);
-            await _context.SaveChangesAsync();
-            return true;
+            if (deletedUser != null)
+            {
+                _context.usermodel.Remove(deletedUser);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
