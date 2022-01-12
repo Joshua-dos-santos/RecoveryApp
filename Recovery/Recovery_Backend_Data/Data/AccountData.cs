@@ -13,11 +13,9 @@ namespace Recovery_Backend_Data.Data
     public class AccountData : AccountInterface
     {
         private readonly RecoveryDBContext _context;
-        private readonly PTData _ptData;
         public AccountData(RecoveryDBContext context)
         {
             _context = context;
-            _ptData = new PTData(context);
         }
 
         public async Task<RegisterModel> GetUserByLogin(string email, string password)
@@ -34,7 +32,7 @@ namespace Recovery_Backend_Data.Data
 
         public async Task<RegisterModel> Register(RegisterModel user)
         {
-            user.User_Key = Utilities.RandomString();
+            user.User_Key = Utilities.RandomString(user);
             var newUser = new RegisterModel()
             {
                 Unique_ID = user.Unique_ID,
@@ -57,7 +55,13 @@ namespace Recovery_Backend_Data.Data
             return newUser;
         }
 
-        
+        public async Task<bool> DeleteUser(int user)
+        {
+            RegisterModel deletedUser = await GetUserByID(user);
+            _context.usermodel.Remove(deletedUser);
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
     }
 }

@@ -46,9 +46,9 @@ export default class SignInForm extends Component {
     }
 
     setSession = (token) => {
-        localStorage.setItem("loggedin", true);
-        localStorage.setItem("token", token.data);
-        localStorage.setItem("Key", token);
+        sessionStorage.setItem("loggedin", true);
+        sessionStorage.setItem("token", token.data);
+        sessionStorage.setItem("Key", token);
         this.setState({ token: token.data, loggedIn: true });
     }
 
@@ -81,7 +81,7 @@ export default class SignInForm extends Component {
         });
     }
     render() {
-        if (localStorage.getItem("loggedin")) {
+        if (sessionStorage.getItem("loggedin")) {
             return (
                 <Redirect exact to="/" />
             )

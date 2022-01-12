@@ -21,13 +21,22 @@ namespace Recovery_BackEnd.Controllers
         private readonly PTData _ptData;
         private IConfiguration _config;
         private readonly InjuryData _injuryData;
-
+        private readonly AccountData _accountData;
         public PTController(RecoveryDBContext context, IConfiguration config)
         {
-            _ptData = new PTData(context);
-            _config = config;
-            _injuryData = new InjuryData(context);
+            try
+            {
+                _ptData = new PTData(context);
+                _config = config;
+                _injuryData = new InjuryData(context);
+                _accountData = new AccountData(context);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> LoginPT([FromBody] PTModel pTModel)
         {
@@ -60,7 +69,7 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterPT([FromBody]PTModel physical_therapist)
+        public async Task<IActionResult> RegisterPT([FromBody] PTModel physical_therapist)
         {
             return Ok(await _ptData.RegisterPT(physical_therapist));
         }
@@ -80,12 +89,22 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpGet("GetAllUsers")]
-        public async Task<IActionResult> GetAllUsers([FromQuery]string ptid)
+        public async Task<IActionResult> GetAllUsers([FromQuery] string ptid)
         {
             var users = await _ptData.GetUsersByPT(Convert.ToInt32(ptid));
-            var injuries = new List<InjuryModel>();
-            
-            return Ok(new { users, injuries});
+
+            return Ok(new { users });
+        }
+
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteUser([FromQuery] string userId)
+        {
+            bool deleted = await _accountData.DeleteUser(Convert.ToInt32(userId));
+            if (deleted)
+            {
+                return Ok("User Deleted");
+            }
+           return NotFound();
         }
     }
 }

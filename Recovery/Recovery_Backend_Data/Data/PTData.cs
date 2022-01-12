@@ -49,13 +49,11 @@ namespace Recovery_Backend_Data.Data
                 UserListModel UpdatedUser = new UserListModel
                 {
                     Unique_ID = user.Unique_ID,
-                    First_Name = user.First_Name,
-                    Last_Name = user.Last_Name,
+                    Name = user.First_Name +" "+ user.Last_Name,
                     Birthdate = user.Birthdate,
-                    Height = user.Height,
-                    Weight = user.Weight,
+                    Height = user.Height +"cm",
+                    Weight = user.Weight+"kg",
                     Email = user.Email,
-                    Password = user.Password,
                     User_Key = user.User_Key,
                     Injury = await _injuryData.GetInjuryByID(user.Injury),
                     Diet = await _dietData.GetDietName(user.Diet),
@@ -68,7 +66,7 @@ namespace Recovery_Backend_Data.Data
 
         public async Task<PTModel> RegisterPT(PTModel ptModel)
         {
-            ptModel.PT_Key = Utilities.RandomString();
+            ptModel.PT_Key = Utilities.KeyGeneratorPT(ptModel);
             var newPt = new PTModel()
             {
                 Unique_ID = ptModel.Unique_ID,

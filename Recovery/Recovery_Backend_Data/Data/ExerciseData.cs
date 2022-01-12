@@ -11,11 +11,9 @@ namespace Recovery_Backend_Data.Data
     public class ExerciseData
     {
         private readonly RecoveryDBContext _context;
-        private readonly AccountData _accountData;
         public ExerciseData(RecoveryDBContext context)
         {
             _context = context;
-            _accountData = new AccountData(context);
         }
         public async Task<ExerciseModel> StoreExercises(List<ExerciseModel> exercises)
         {
@@ -52,12 +50,20 @@ namespace Recovery_Backend_Data.Data
         }
         public async Task<ExerciseModel> GetExercise(int? id)
         {
+            if(id == null)
+            {
+                return null;
+            }
             var exercise = await _context.exercise.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
             return exercise;
         }
 
         public async Task<string> GetExerciseName(int? id)
         {
+            if (id == null)
+            {
+                return null;
+            }
             var exercise = await _context.exercise.Where(m => m.Unique_ID == id).FirstOrDefaultAsync();
             return exercise.Name;
         }

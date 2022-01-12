@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactFlexyTable from "react-flexy-table";
 import "react-flexy-table/dist/index.css"
+import deleteIcon from "./Icons/Delete.png"
+import editIcon from "./Icons/Edit.png"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 
@@ -30,7 +32,7 @@ export class Home extends Component {
             method: 'GET',
             url: 'http://localhost:5000/PT/GetPTByToken/GetPTByToken',
             params: {
-                jtoken: localStorage.getItem("token")
+                jtoken: sessionStorage.getItem("token")
             }
         }).then((data) => {
             console.log(data);
@@ -59,41 +61,22 @@ export class Home extends Component {
     }
 
     render() {
-        if (!localStorage.getItem("loggedin")) {
+        if (!sessionStorage.getItem("loggedin")) {
             return (
                 <Redirect to="/login" />
             )
         }
-
+        const additionalCols = [{
+            header: "Actions",
+            td: (data) => {
+                return <div>
+                    <img src={deleteIcon} width="30" height="20" onClick={() => alert("this is delete for id " + data.unique_ID)} /> 
+                    <img src={editIcon} width="30" height="20" onClick={() => alert("this is edit for id " + data.unique_ID)} />
+                </div>
+            }
+        }]
         return (
-            <div>
-                <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Injury</th>
-                            <th>Weight</th>
-                            <th>Height</th>
-                            <th>Birthdate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.users.map(user =>
-                            <tr key={user.unique_ID}>
-                                <td>{user.first_Name}</td>
-                                <td>{user.last_Name}</td>
-                                {this.state.injuries.map(injury =>
-                                    <td>{injury.description}</td>
-                                )}
-                                <td>{user.weight}</td>
-                                <td>{user.height}</td>
-                                <td>{user.birthdate}</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
+            <ReactFlexyTable data={this.state.users} filterable nonFilterCols={["height", "weight"]} additionalCols={additionalCols }/>
         );
     }
 }

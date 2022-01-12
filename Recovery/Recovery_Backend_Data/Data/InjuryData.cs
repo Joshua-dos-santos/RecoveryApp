@@ -19,8 +19,12 @@ namespace Recovery_Backend_Data.Data
 
         public async Task <string> GetInjuryByID(int? unique_id)
         {
-            var injury = await _context.injury.Where(i => i.Unique_ID == unique_id).FirstOrDefaultAsync();
-            return injury.Part_of_Body + injury.Description;
+            if (unique_id != null)
+            {
+                var injury = await _context.injury.Where(i => i.Unique_ID == unique_id).FirstOrDefaultAsync();
+                return injury.Part_of_Body + " " + injury.Description;
+            }
+            return null;
         }
     }
 }

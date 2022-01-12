@@ -14,7 +14,7 @@ export class Exercises extends Component {
             exercises: [],
             training: [],
             userData: [],
-            jtoken: localStorage.getItem("token"),
+            jtoken: sessionStorage.getItem("token"),
             loggedIn: false,
             part_of_body: "back",
             loading: false
@@ -30,12 +30,12 @@ export class Exercises extends Component {
 
     OnLoad(e) {
         var self = this;
-        console.log(localStorage.getItem("token"))
+        console.log(sessionStorage.getItem("token"))
         axios({
             method: 'GET',
             url: 'http://localhost:5000/Account/GetUserByToken/GetUserByToken',
             params: {
-                jtoken: localStorage.getItem("token")
+                jtoken: sessionStorage.getItem("token")
             }
         }).then((data) => {
             console.log(data);
@@ -59,7 +59,7 @@ export class Exercises extends Component {
     }
 
     render() {
-        if (!localStorage.getItem("loggedin")) {
+        if (!sessionStorage.getItem("loggedin")) {
             return (
                 <Redirect to="/login" />
             )
