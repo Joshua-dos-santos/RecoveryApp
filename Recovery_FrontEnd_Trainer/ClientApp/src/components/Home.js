@@ -19,6 +19,7 @@ export class Home extends Component {
         };
         this.OnLoad = this.OnLoad.bind(this);
         this.populateData = this.populateData.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -60,6 +61,22 @@ export class Home extends Component {
         );
     }
 
+    handleSubmit = (userId) => {
+        var self = this;
+        const userID = userId
+        console.log(userID)
+        axios({
+            method: 'DELETE',
+            url: 'http://localhost:5000/PT/DeleteUser/DeleteUser',
+            params: {
+                userId: userID
+            }
+        }).then(function (data) {
+            console.log(data.data)
+            window.location.reload(false)
+        });
+    }
+
     render() {
         if (!sessionStorage.getItem("loggedin")) {
             return (
@@ -67,16 +84,15 @@ export class Home extends Component {
             )
         }
         const additionalCols = [{
-            header: "Actions",
+            header: "",
             td: (data) => {
                 return <div>
-                    <img src={deleteIcon} width="30" height="20" onClick={() => alert("this is delete for id " + data.unique_ID)} /> 
-                    <img src={editIcon} width="30" height="20" onClick={() => alert("this is edit for id " + data.unique_ID)} />
+                    <img src={deleteIcon} width="30" height="20" onClick={(e) => this.handleSubmit(data.unique_ID)} /> 
                 </div>
             }
         }]
         return (
-            <ReactFlexyTable data={this.state.users} filterable nonFilterCols={["height", "weight"]} additionalCols={additionalCols }/>
+            <ReactFlexyTable data={this.state.users} sortable nonSortableCols={["name", "email"]} filterable nonFilterCols={["height", "weight"]} additionalCols={additionalCols }/>
         );
     }
 }
