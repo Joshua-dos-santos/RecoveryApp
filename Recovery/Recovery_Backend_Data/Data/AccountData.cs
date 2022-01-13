@@ -70,5 +70,13 @@ namespace Recovery_Backend_Data.Data
             }
         }
 
+        public async Task<RegisterModel> UpdateUser(RegisterModel user)
+        {
+            RegisterModel userModel = await _context.usermodel.Where(x => x.Unique_ID == user.Unique_ID).FirstOrDefaultAsync();
+            _context.usermodel.Update(userModel).CurrentValues.SetValues(user);
+            await _context.SaveChangesAsync();
+            userModel = await _context.usermodel.Where(x => x.Unique_ID == user.Unique_ID).FirstOrDefaultAsync();
+            return userModel;
+        }
     }
 }

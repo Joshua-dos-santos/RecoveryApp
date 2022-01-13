@@ -61,7 +61,7 @@ namespace Recovery_Backend_Data.Data
                 _context.diet.Remove(meal);
             }
             _context.SaveChanges();
-            for (int i = 0; i <= diets.Count(); i++)
+            for (int i = 0; i <= diets.Count()-1; i++)
             {
                 var newDiet = new DietModel()
                 {
