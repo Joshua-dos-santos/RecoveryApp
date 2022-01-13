@@ -24,7 +24,7 @@ namespace Recovery_Backend_Data.Data
                 _context.exercise.Remove(training);
             }
             _context.SaveChanges();
-            for (int i = 0; i <= exercises.Count(); i++)
+            for (int i = 0; i <= exercises.Count() - 1; i++)
             {
                 var newExercise = new ExerciseModel()
                 {
