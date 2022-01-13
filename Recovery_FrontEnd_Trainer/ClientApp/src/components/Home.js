@@ -92,7 +92,7 @@ export class Home extends Component {
             }
         }]
         return (
-            <ReactFlexyTable data={this.state.users} sortable nonSortableCols={["name", "email"]} filterable nonFilterCols={["height", "weight"]} additionalCols={additionalCols }/>
+            <ReactFlexyTable data={this.state.users} sortable nonSortableCols={["name", "email"]} filterable nonFilterCols={["height", "weight", "birthdate"]} additionalCols={additionalCols }/>
         );
     }
 }

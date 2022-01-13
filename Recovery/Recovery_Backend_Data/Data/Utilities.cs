@@ -18,9 +18,9 @@ namespace Recovery_Backend_Data.Data
         {
             _config = config;
         }
-        public string HashPassword(string password)
+        public static string HashPassword(string password)
         {
-            string input = password + _config["Secret"];
+            string input = password;
 
             MD5 md5Hasher = MD5.Create();
 

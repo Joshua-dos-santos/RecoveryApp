@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Recovery_Backend_Data.Interfaces;
 using Recovery_Models.Models;
 using System;
@@ -13,6 +14,7 @@ namespace Recovery_Backend_Data.Data
     public class AccountData : AccountInterface
     {
         private readonly RecoveryDBContext _context;
+
         public AccountData(RecoveryDBContext context)
         {
             _context = context;
@@ -40,7 +42,7 @@ namespace Recovery_Backend_Data.Data
                 Last_Name = user.Last_Name,
                 Birthdate = user.Birthdate,
                 Email = user.Email,
-                Password = user.Password,
+                Password = Utilities.HashPassword(user.Password),
                 User_Key = user.User_Key,
                 Height = user.Height,
                 Weight = user.Weight,
@@ -73,10 +75,17 @@ namespace Recovery_Backend_Data.Data
         public async Task<RegisterModel> UpdateUser(RegisterModel user)
         {
             RegisterModel userModel = await _context.usermodel.Where(x => x.Unique_ID == user.Unique_ID).FirstOrDefaultAsync();
+            user.Birthdate = user.Birthdate.Remove(user.Birthdate.Length - 8);
             _context.usermodel.Update(userModel).CurrentValues.SetValues(user);
+            user.Unique_ID = 0;
             await _context.SaveChangesAsync();
             userModel = await _context.usermodel.Where(x => x.Unique_ID == user.Unique_ID).FirstOrDefaultAsync();
             return userModel;
+        }
+
+        public virtual async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }

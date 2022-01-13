@@ -30,7 +30,7 @@ namespace Recovery_BackEnd.Controllers
                 _accountData = new AccountData(context);
                 _config = config;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }
@@ -40,7 +40,7 @@ namespace Recovery_BackEnd.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginModel user)
         {
-            var currentUser = await _accountData.GetUserByLogin(user.Email, user.Password);
+            var currentUser = await _accountData.GetUserByLogin(user.Email, Utilities.HashPassword(user.Password));
             Console.WriteLine(currentUser);
             if (currentUser != null)
             {
@@ -69,13 +69,13 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody]RegisterModel user)
+        public async Task<IActionResult> Register([FromBody] RegisterModel user)
         {
             return Ok(await _accountData.Register(user));
         }
 
         [HttpGet("GetUserByToken")]
-        public async Task<ActionResult> GetUserByToken([FromQuery] string jtoken)
+        public async Task<IActionResult> GetUserByToken([FromQuery] string jtoken)
         {//Gets the user and company data by the token from the front end, used in the userinfo page to populate the data.
             var user = JWTTokenHelper.VerifyToken(jtoken, _config);
             if (user is null)
@@ -84,11 +84,26 @@ namespace Recovery_BackEnd.Controllers
             }
             int id = Convert.ToInt32(user.Claims.First().Value);
             RegisterModel userById = await _accountData.GetUserByID(id);
-            
+
             return Ok(userById);
         }
 
+        [HttpPost("UpdateUser")]
+        public async Task<IActionResult> UpdateUser([FromBody] RegisterModel user)
+        {
+            int id = user.Unique_ID;
+            RegisterModel userbyid = await _accountData.GetUserByID(id);
 
+            if (userbyid is null)
+            {
+                return NotFound();
+            }
+                await _accountData.UpdateUser(user);
+            await _accountData.SaveAsync();
+            return Ok();
+        }
     }
+
 }
+
 

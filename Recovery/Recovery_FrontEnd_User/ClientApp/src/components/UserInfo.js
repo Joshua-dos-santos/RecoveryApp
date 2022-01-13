@@ -20,7 +20,10 @@ export class UserInfo extends Component {
             loggedIn: false
         };
         this.OnLoad = this.OnLoad.bind(this);
+        this.OnUpdateUserData = this.OnUpdateUserData.bind(this);
     }
+
+    componentDidUpdate() { }
 
     componentDidMount() {
         this.OnLoad();
@@ -40,6 +43,20 @@ export class UserInfo extends Component {
             self.setState({ userData: data.data }, () => { console.log(self.state.userData) });
         });
     }
+
+    OnUpdateUserData = (e) => {
+        var self = this;
+        const user = self.state.userData;
+        axios({
+            method: "POST",
+            url: "http://localhost:5000/Account/UpdateUser/UpdateUser",
+            dataType: "json",
+            data:  user ,
+        }).then((data) => {
+            console.log(data);
+            return;
+        });
+    };
 
     render() {
         if (!sessionStorage.getItem("loggedin")) {
@@ -66,9 +83,9 @@ export class UserInfo extends Component {
                             />
                         </div>
                         <div className="py-2">
-                            <Label for="fullName">Last Name</Label>
+                            <Label for="last_Name">Last Name</Label>
                             <Input
-                                type="first_Name"
+                                type="last_Name"
                                 placeholder={this.state.userData.last_Name}
                                 onChange={(e) =>
                                     (this.state.userData.last_Name = e.target.value)
@@ -76,6 +93,45 @@ export class UserInfo extends Component {
                                 name="last_Name"
                             />
                         </div>
+                        <div className="py-2">
+                            <Label for="email">Email</Label>
+                            <Input
+                                type="email"
+                                placeholder={this.state.userData.email}
+                                onChange={(e) =>
+                                    (this.state.userData.email = e.target.value)
+                                }
+                                name="email"
+                            />
+                        </div>
+                        <div className="py-2">
+                            <Label for="height">Height</Label>
+                            <Input
+                                type="height"
+                                placeholder={this.state.userData.height}
+                                onChange={(e) =>
+                                    (this.state.userData.height = e.target.value)
+                                }
+                                name="height"
+                            />
+                        </div>
+                        <div className="py-2">
+                            <Label for="weight">Weight</Label>
+                            <Input
+                                type="weight"
+                                placeholder={this.state.userData.weight}
+                                onChange={(e) =>
+                                    (this.state.userData.weight = e.target.value)
+                                }
+                                name="weight"
+                            />
+                        </div>
+                        <Button
+                            className="btn btn-primary"
+                            onClick={(e) => this.OnUpdateUserData(e)}
+                        >
+                            Update User
+                        </Button>
                     </div>
                 </div>
             </body>

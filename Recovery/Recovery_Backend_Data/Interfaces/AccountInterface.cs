@@ -13,5 +13,7 @@ namespace Recovery_Backend_Data.Interfaces
         public Task<RegisterModel> GetUserByID(int key);
         public Task<RegisterModel> Register(RegisterModel user);
         public Task<bool> DeleteUser(int user);
+
+        Task<int> SaveAsync();
     }
 }
