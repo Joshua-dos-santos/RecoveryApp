@@ -2,9 +2,7 @@
 import { Link } from 'react-router-dom';
 import "./Login.css";
 import axios from 'axios'
-import ReactSession from 'react-client-session/dist/ReactSession';
 import { Redirect } from 'react-router-dom';
-import { Card } from 'reactstrap';
 
 
 export default class SignInForm extends Component {
@@ -123,7 +121,7 @@ export default class SignInForm extends Component {
 
                     <div className="formField">
                         <a href="https://localhost:5000/login">
-                            <button className="formFieldButton" onClick={(e) => this.handleLogin(e)}>Sign In</button>
+                            <button className="formFieldButton" onClick={(e) => { this.handleLogin(e); window.location.reload(false);}}>Sign In</button>
                         </a>
                         <Link className="m-2 registerlink" to="/register" id="registerLink">No account yet? Register here!</Link>
                     </div>
