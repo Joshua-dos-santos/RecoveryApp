@@ -103,7 +103,7 @@ export class Diets extends Component {
                                 <td>{diet.nutrition.nutrients[2].amount}g</td>
                                 <td>{diet.nutrition.nutrients[3].amount}g</td>
                                 <td>{diet.nutrition.nutrients[4].amount}g</td>
-                                <td><button class="btn btn-primary" onClick={(e) => this.handleSubmit(diet.id)}>Submit Meal</button></td>
+                                <td><button class="btn btn-primary" onClick={(e) => { this.handleSubmit(diet.id); alert("Submitted Meal") }}>Submit Meal</button></td>
 
                             </tr>
                         )}

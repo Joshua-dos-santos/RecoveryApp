@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Diets } from './components/Diet';
+import { UserInfo } from './components/UserInfo';
 import './custom.css'
 import SignInForm from './pages/SignInForm';
 import SignUpForm from './pages/SignUpForm';
@@ -12,7 +13,7 @@ import { Exercises } from './components/Exercises';
 export default class App extends Component {
     static displayName = App.name;
 
-    render() {
+    render() { 
         return (
             <Layout>
                 <Route exact path='/' component={Home} />
@@ -20,6 +21,7 @@ export default class App extends Component {
                 <Route path="/login" component={SignInForm} />
                 <Route path="/register" component={SignUpForm} />
                 <Route path="/exercises" component={Exercises} />
+                <Route path="/userInfo" component={UserInfo} />
             </Layout>
         );
     }
