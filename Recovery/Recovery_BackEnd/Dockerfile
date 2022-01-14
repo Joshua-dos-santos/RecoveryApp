@@ -7,8 +7,8 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Recovery/Recovery_BackEnd/Recovery_BackEnd.csproj", "Recovery_BackEnd/"]
-COPY ["Recovery_Models/Recovery_Models.csproj", "Recovery_Models/"]
-COPY ["Recovery_Backend_Data/Recovery_Backend_Data.csproj", "Recovery_Backend_Data/"]
+COPY ["Recovery/Recovery_Models/Recovery_Models.csproj", "Recovery_Models/"]
+COPY ["Recovery/Recovery_Backend_Data/Recovery_Backend_Data.csproj", "Recovery_Backend_Data/"]
 RUN dotnet restore "Recovery_BackEnd/Recovery_BackEnd.csproj"
 COPY . .
 WORKDIR "/src/Recovery_BackEnd"
