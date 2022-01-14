@@ -97,7 +97,7 @@ export class Exercises extends Component {
                                         <img className="overflow-hidden" style={{ maxHeight: "200px" }} src={exercise.gifUrl.slice(0, 4) + "s" + exercise.gifUrl.slice(4)} width="auto" height="auto"></img>
                                         <h5 className="card-title">{exercise.name}</h5>
                                         <p className="card-text"></p>
-                                        <button class="btn btn-primary" onClick={(e) => this.handleSubmit(exercise.id)}>Submit Exercise</button>
+                                        <button class="btn btn-primary" onClick={(e) => {this.handleSubmit(exercise.id); alert("Submitted"+" "+ exercise.name) }}>Submit Exercise</button>
                                     </div>
                                 </div>
                             </div>

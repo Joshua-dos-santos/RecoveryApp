@@ -20,9 +20,9 @@ namespace Recovery_BackEnd.Controllers
         }
 
         [HttpPost("UpdateInjury")]
-        public async Task<IActionResult> UpdateInjury([FromBody]InjuryModel injury,[FromQuery] string UserID)
+        public async Task<IActionResult> UpdateInjury([FromBody]InjuryModel injurydata,[FromQuery] string userID)
         {
-            RegisterModel user = await _injuryData.UpdateUserInjury(injury, Convert.ToInt32(UserID));
+            RegisterModel user = await _injuryData.UpdateUserInjury(injurydata, Convert.ToInt32(userID));
             return Ok(user);
         }
     }

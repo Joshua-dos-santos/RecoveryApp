@@ -128,7 +128,7 @@ export class UserInfo extends Component {
                         </div>
                         <Button
                             className="btn btn-primary"
-                            onClick={(e) => this.OnUpdateUserData(e)}
+                            onClick={(e) => {this.OnUpdateUserData(e); alert("Updated"+" "+ this.state.userData.first_Name) }}
                         >
                             Update User
                         </Button>

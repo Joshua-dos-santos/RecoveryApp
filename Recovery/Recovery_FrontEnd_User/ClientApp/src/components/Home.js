@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import Slider from 'react-rangeslider';
+import './Home.css'
 import axios from 'axios'
 
 export class Injury extends Component {
@@ -47,13 +48,16 @@ export class Injury extends Component {
             pain_Scale: this.state.pain_Scale,
             description: this.state.description,
         };
-        const injurydata = injury;
-        const userID = this.state.userData.unique_ID
+        var injurydata = injury;
+        var userID = this.state.userData.unique_ID
         axios({
             method: 'POST',
             url: 'http://localhost:5000/api/injury/UpdateInjury',
             dataType: "json",
-            data: { injurydata, userID }
+            data: injurydata,
+            params: {
+                userID: userID
+            }
         }).then(data => console.log(data));
     }
 
@@ -80,7 +84,7 @@ export class Injury extends Component {
                 <Redirect to="/login" />
             )
         }
-        let { pain_Scale } = this.state
+        let { pain_Scale } = this.state;
         return (
             <div className="formCenter">
                 <form onSubmit={this.handleSubmit} className="formFields">
@@ -88,11 +92,21 @@ export class Injury extends Component {
                         <label className="formFieldLabel" htmlFor="part_of_Body">
                             Part of body
                         </label>
-                        <input type="text" id="part_of_Body" className="formFieldInput" placeholder="Enter your first name" name="part_of_Body" value={this.state.part_of_Body} onChange={this.handleChange} />
+                        <select className="dropdown" name="part_of_Body" id="part_of_Body" defaultValue={this.state.part_of_Body} onChange={this.handleChange}>
+                            <option value="shoulder">Shoulder</option>
+                            <option value="neck">Neck</option>
+                            <option value="upper leg">Upper leg</option>
+                            <option value="lower leg">Lower leg</option>
+                            <option value="upper arm">Upper arm</option>
+                            <option value="lower arm">Lower arm</option>
+                            <option value="chest">Chest</option>
+                            <option value="back">Back</option>
+                        </select>
+                        
                     </div>
                     <div className="formField">
                         <label className="formFieldLabel" htmlFor="description">
-                            Last Name
+                            Description
                         </label>
                         <input type="text" id="description" className="formFieldInput" placeholder="Enter a description" name="description" value={this.state.description} onChange={this.handleChange} />
                     </div>
@@ -120,7 +134,7 @@ export class Injury extends Component {
                     </div>
 
                     <div className="formField">
-                        <button className="formFieldButton" onClick={(e) => this.handleSubmit(e)} >Sign Up</button>{" "}
+                        <button className="formFieldButton" onClick={(e) => this.handleSubmit(e)} >Submit Injury</button>{" "}
                     </div>
                 </form>
             </div>
