@@ -11,7 +11,7 @@ COPY ["Recovery/Recovery_Models/Recovery_Models.csproj", "Recovery_Models/"]
 COPY ["Recovery/Recovery_Backend_Data/Recovery_Backend_Data.csproj", "Recovery_Backend_Data/"]
 RUN dotnet restore "Recovery_BackEnd/Recovery_BackEnd.csproj"
 COPY . .
-WORKDIR "/src/Recovery_BackEnd"
+WORKDIR "/src/Recovery/Recovery_BackEnd"
 RUN dotnet build "Recovery_BackEnd.csproj" -c Release -o /app/build
 
 FROM build AS publish
