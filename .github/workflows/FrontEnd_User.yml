@@ -24,7 +24,7 @@ jobs:
     - name: npm install
       run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm i 
     - name: run build
-      run: cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run build
+      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run build
       env:
           CI: ""
     - name: Run tests
