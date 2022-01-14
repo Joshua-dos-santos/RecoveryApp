@@ -14,6 +14,9 @@ EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BE9ED74F-4FAD-463B-8EC3-066A1EB494D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_UnitTest", "Recovery_UnitTest\Recovery_UnitTest.csproj", "{B59647DC-8DC5-411F-B861-CB688A1B6298}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64BDE497-381C-4E60-8763-3903EDF12E20} = {64BDE497-381C-4E60-8763-3903EDF12E20}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_FrontEnd_Trainer", "Recovery_FrontEnd_Trainer\Recovery_FrontEnd_Trainer.csproj", "{8C8E7D44-1250-49FB-A154-F87D4D6405D1}"
 EndProject

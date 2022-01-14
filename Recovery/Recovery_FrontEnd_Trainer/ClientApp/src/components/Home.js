@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactFlexyTable from "react-flexy-table";
 import "react-flexy-table/dist/index.css"
 import deleteIcon from "./Icons/Delete.png"
-import editIcon from "./Icons/Edit.png"
 import axios from 'axios'
 import { Redirect } from 'react-router-dom';
 

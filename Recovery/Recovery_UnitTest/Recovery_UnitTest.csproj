@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Recovery\Recovery_Backend_Data\Recovery_Backend_Data.csproj" />
+    <ProjectReference Include="..\Recovery_Backend_Data\Recovery_Backend_Data.csproj" />
+    <ProjectReference Include="..\Recovery_Models\Recovery_Models.csproj" />
   </ItemGroup>
 
 </Project>
