@@ -35,7 +35,7 @@ jobs:
 # Target Docker registry
         registry: docker.io
 # Location of Dockerfile, if not Dockerfile in root directory
-        dockerfile: Recovery_BackEnd/Dockerfile
+        dockerfile: Recovery/Recovery_BackEnd/Dockerfile
 # Docker registry username
         username: ${{ secrets.DOCKER_USERNAME }}
 # Docker registry password
