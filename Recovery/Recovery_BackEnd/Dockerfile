@@ -6,7 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["./Recovery_BackEnd.csproj", "Recovery_BackEnd/"]
+COPY ["Recovery_BackEnd.csproj", "Recovery_BackEnd/"]
 COPY ["Recovery_Models/Recovery_Models.csproj", "Recovery_Models/"]
 COPY ["Recovery_Backend_Data/Recovery_Backend_Data.csproj", "Recovery_Backend_Data/"]
 RUN dotnet restore "Recovery_BackEnd/Recovery_BackEnd.csproj"
