@@ -20,8 +20,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore Recovery/Recovery.sln
     - name: Build
-      run: dotnet build Recovery/Recovery_BackEnd/Recovery_BackEnd.csproj --configuration release
+      run: dotnet build Recovery/Recovery_BackEnd/Recovery_BackEnd.csproj --no-restore
     - name: Test
+      run: dotnet test Recovery/Recovery_BackEnd/Recovery_BackEnd.csproj --configuration Release
     - name: Docker Build & Push Action
   # You may pin to the exact commit or the version.
   # uses: mr-smithers-excellent/docker-build-push@a7fe6652db5c7274374844e81692992f5a2befb9
