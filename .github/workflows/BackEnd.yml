@@ -22,4 +22,20 @@ jobs:
     - name: Build
       run: dotnet build Recovery/Recovery_BackEnd/Recovery_BackEnd.csproj --configuration release
     - name: Test
-      run: dotnet test Recovery/Recovery.sln --configuration release
+    - name: Docker Build & Push Action
+  # You may pin to the exact commit or the version.
+  # uses: mr-smithers-excellent/docker-build-push@a7fe6652db5c7274374844e81692992f5a2befb9
+      uses: mr-smithers-excellent/docker-build-push@v5.6
+      with:
+# Name of the Docker image
+        image: joshiiee7/recoverybackend
+# Tags override for Docker image
+        tags: v1, latest
+# Target Docker registry
+        registry: docker.io
+# Location of Dockerfile, if not Dockerfile in root directory
+        dockerfile: Recovery_BackEnd/Dockerfile
+# Docker registry username
+        username: ${{ secrets.DOCKER_USERNAME }}
+# Docker registry password
+        password: ${{ secrets.DOCKER_PASSWORD }}
