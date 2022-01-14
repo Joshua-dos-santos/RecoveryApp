@@ -22,10 +22,10 @@ jobs:
       with:
         node-version: 14.x
     - name: npm install
-      run: cd Recovery/Recovery_FrontEnd_User/ClientApp && npm i 
+      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm i 
     - name: run build
       run: cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run build
       env:
           CI: ""
     - name: Run tests
-      run: cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run test --if-present
+      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run test --if-present
