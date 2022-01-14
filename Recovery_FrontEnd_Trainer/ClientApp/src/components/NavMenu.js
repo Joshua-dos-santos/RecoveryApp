@@ -22,22 +22,43 @@ export class NavMenu extends Component {
     }
 
     render() {
-        return (
-            <header>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-                    <Container>
-                        <NavbarBrand tag={Link} to="/" className="text-light">Recovery</NavbarBrand>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/login">Login</NavLink>
-                                </NavItem>
-                            </ul>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-            </header>
-        );
+        if (sessionStorage.getItem("loggedin")) {
+            return (
+                <header>
+                    <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
+                        <Container>
+                            <NavbarBrand tag={Link} to="/" className="text-light">Recovery</NavbarBrand>
+                            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                                <ul className="navbar-nav flex-grow"> 
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-light" to="/" onClick={() => { sessionStorage.clear(); window.location.reload(false); }}>Logout</NavLink>
+                                    </NavItem>
+                                </ul>
+                            </Collapse>
+                        </Container>
+                    </Navbar>
+                </header>
+            )
+        }
+        if (!sessionStorage.getItem("loggedin")) {
+            return (
+                <header>
+                    <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
+                        <Container>
+                            <NavbarBrand tag={Link} to="/" className="text-light">Recovery</NavbarBrand>
+                            <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                            <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                                <ul className="navbar-nav flex-grow">
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-light" to="/login">Login</NavLink>
+                                    </NavItem>
+                                </ul>
+                            </Collapse>
+                        </Container>
+                    </Navbar>
+                </header>
+            );
+        }
     }
 }

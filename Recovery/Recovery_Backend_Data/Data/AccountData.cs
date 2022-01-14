@@ -75,7 +75,6 @@ namespace Recovery_Backend_Data.Data
         public async Task<RegisterModel> UpdateUser(RegisterModel user)
         {
             RegisterModel userModel = await _context.usermodel.Where(x => x.Unique_ID == user.Unique_ID).FirstOrDefaultAsync();
-            user.Birthdate = user.Birthdate.Remove(user.Birthdate.Length - 8);
             _context.usermodel.Update(userModel).CurrentValues.SetValues(user);
             user.Unique_ID = 0;
             await _context.SaveChangesAsync();

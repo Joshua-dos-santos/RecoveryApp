@@ -9,6 +9,6 @@ namespace Recovery_Backend_Data.Interfaces
 {
     public interface InjuryInterface
     {
-        public Task <string> GetInjuryByID(int? unique_id);
+        public Task <string> GetInjuryName(int? unique_id);
     }
 }

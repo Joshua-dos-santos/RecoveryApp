@@ -55,7 +55,7 @@ namespace Recovery_Backend_Data.Data
                     Weight = user.Weight+"kg",
                     Email = user.Email,
                     User_Key = user.User_Key,
-                    Injury = await _injuryData.GetInjuryByID(user.Injury),
+                    Injury = await _injuryData.GetInjuryName(user.Injury),
                     Diet = await _dietData.GetDietName(user.Diet),
                     Exercise = await _exerciseData.GetExerciseName(user.Exercise)
                 };
