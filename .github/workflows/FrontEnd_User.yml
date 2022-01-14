@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: FrontEnd_Trainer
+name: FrontEnd_User
 
 on:
   push:
@@ -22,10 +22,10 @@ jobs:
       with:
         node-version: 14.x
     - name: npm install
-      run:  Recovery_FrontEnd_User/ClientApp && npm i 
+      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm i 
     - name: run build
-      run: Recovery_FrontEnd_User/ClientApp && npm run build
+      run: cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run build
       env:
           CI: ""
     - name: Run tests
-      run:  Recovery_FrontEnd_User/ClientApp && npm run test --if-present
+      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run test --if-present
