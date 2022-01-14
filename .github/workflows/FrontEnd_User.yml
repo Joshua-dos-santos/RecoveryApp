@@ -27,5 +27,4 @@ jobs:
       run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run build
       env:
           CI: ""
-    - name: Run tests
-      run:  cd Recovery/Recovery_FrontEnd_User/ClientApp && npm run test --if-present
+
