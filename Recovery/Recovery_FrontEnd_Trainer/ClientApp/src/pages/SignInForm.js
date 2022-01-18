@@ -83,7 +83,7 @@ export default class SignInForm extends Component {
     render() {
         if (sessionStorage.getItem("loggedin")) {
             return (
-                <Redirect exact to="/" />
+                <Redirect exact to="/dashboard" />
             )
 
         }

@@ -12,9 +12,10 @@ export default class App extends Component {
   render () {
     return (
       <Layout>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/' component={SignInForm} />
             <Route path="/login" component={SignInForm} />
             <Route path="/register" component={SignUpForm} />
+            <Route path="/dashboard" component={Home} />
       </Layout>
     );
   }
