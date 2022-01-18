@@ -16,7 +16,7 @@ export default class App extends Component {
     render() { 
         return (
             <Layout>
-                <Route exact path='/' component={UserInfo} />
+                <Route exact path='/' component={SignInForm} />
                 <Route exact path='/injury' component={Injury} />
                 <Route path='/diets' component={Diets} />
                 <Route path="/login" component={SignInForm} />
