@@ -134,7 +134,7 @@ export class Injury extends Component {
                     </div>
 
                     <div className="formField">
-                        <button className="formFieldButton" onClick={(e) => this.handleSubmit(e)} >Submit Injury</button>{" "}
+                        <button className="formFieldButton" onClick={(e) => { this.handleSubmit(e); alert("Submitted injury")}} >Submit Injury</button>{" "}
                     </div>
                 </form>
             </div>

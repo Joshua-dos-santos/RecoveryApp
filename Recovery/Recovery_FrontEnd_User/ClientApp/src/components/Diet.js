@@ -77,9 +77,7 @@ export class Diets extends Component {
         return (
             <div>
                 <h1 id="tableLabel">Diets</h1>
-                <p>Choose your diet meal</p><button class="btn btn-primary" onClick={(e) => this.storeMeals(e)}>Store Meal</button>
-                <button class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Submit Meal</button>
-
+                <p>Choose your diet meal</p><button class="btn btn-primary" onClick={(e) => this.storeMeals(e)}>Store Meal</button> 
                 <table className='table table-striped' aria-labelledby="tabelLabel" id="meals">
                     <thead>
                         <tr>
