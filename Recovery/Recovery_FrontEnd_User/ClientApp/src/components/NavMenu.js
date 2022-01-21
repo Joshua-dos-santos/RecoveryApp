@@ -41,10 +41,10 @@ export class NavMenu extends Component {
                                         <NavLink tag={Link} className="text-light" to="/exercises">Exercises</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink tag={Link} className="text-light" to="/userInfo">User Info</NavLink>
+                                        <NavLink tag={Link} className="text-light" to="/userInfo">Account</NavLink>
                                     </NavItem>
                                     <NavItem>
-                                        <NavLink tag={Link} className="text-light" to="/dashboard">User Info</NavLink>
+                                        <NavLink tag={Link} className="text-light" to="/dashboard">Dashboard</NavLink>
                                     </NavItem>
                                     <NavItem>
                                         <NavLink tag={Link} className="text-light" to="/" onClick={() => { sessionStorage.clear(); window.location.reload(false);}}>Logout</NavLink>
