@@ -26,6 +26,15 @@ namespace Recovery_Backend_Data.Data
             }
             return null;
         }
+        public async Task<InjuryModel> GetInjury(int? unique_id)
+        {
+            if (unique_id != null)
+            {
+                var injury = await _context.injury.Where(i => i.Unique_ID == unique_id).FirstOrDefaultAsync();
+                return injury;
+            }
+            return null;
+        }
 
         public async Task<RegisterModel> UpdateUserInjury(InjuryModel injury, int userID)
         {

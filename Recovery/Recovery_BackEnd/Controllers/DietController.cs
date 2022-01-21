@@ -13,10 +13,12 @@ namespace Recovery_BackEnd.Controllers
     public class DietController : Controller
     {
         private readonly DietData _dietData;
+        private readonly AccountData _accountData;
 
         public DietController(RecoveryDBContext context)
         {
             _dietData = new DietData(context);
+            _accountData = new AccountData(context);
         }
 
         [HttpGet("DietList")]
@@ -37,6 +39,14 @@ namespace Recovery_BackEnd.Controllers
         public async Task<IActionResult> StoreMeals([FromBody]List<DietModel> diets)
         {   
             return Ok(await _dietData.StoreDiets(diets));
+        }
+
+        [HttpGet("GetDietByUser")]
+        public async Task<IActionResult> GetDietByUser([FromQuery] string userID)
+        {
+            RegisterModel user = await _accountData.GetUserByID(Convert.ToInt32(userID));
+            DietModel diet = await _dietData.GetDiet(user.Diet);
+            return Ok(diet);
         }
     }
 }

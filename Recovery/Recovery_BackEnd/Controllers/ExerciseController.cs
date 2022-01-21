@@ -13,10 +13,13 @@ namespace Recovery_BackEnd.Controllers
     public class ExerciseController : Controller
     {
         private readonly ExerciseData _exerciseData;
+        private readonly AccountData _accountData;
 
         public ExerciseController(RecoveryDBContext context)
         {
             _exerciseData = new ExerciseData(context);
+            _accountData = new AccountData(context);
+
         }
         [HttpPost("StoreExercises")]
         public async Task<IActionResult> StoreExercises([FromBody] List<ExerciseModel> exercises)
@@ -30,6 +33,14 @@ namespace Recovery_BackEnd.Controllers
             ExerciseModel exercise = await _exerciseData.GetExercise(Convert.ToInt32(exerciseID));
             RegisterModel user = await _exerciseData.UpdateUserExercise(exercise, Convert.ToInt32(UserID));
             return Ok(user);
+        }
+
+        [HttpGet("GetExerciseByUser")]
+        public async Task<IActionResult> GetExerciseByUser([FromQuery] string userID)
+        {
+            RegisterModel user = await _accountData.GetUserByID(Convert.ToInt32(userID));
+            ExerciseModel exercise = await _exerciseData.GetExercise(user.Exercise);
+            return Ok(exercise);
         }
     }
 }

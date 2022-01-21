@@ -8,6 +8,7 @@ import './custom.css'
 import SignInForm from './pages/SignInForm';
 import SignUpForm from './pages/SignUpForm';
 import { Exercises } from './components/Exercises';
+import { UserDashboard } from './components/UserDashboard';
 
 
 export default class App extends Component {
@@ -23,6 +24,7 @@ export default class App extends Component {
                 <Route path="/register" component={SignUpForm} />
                 <Route path="/exercises" component={Exercises} />
                 <Route path="/userInfo" component={UserInfo} />
+                <Route path="/dashboard" component={UserDashboard} />
             </Layout>
         );
     }

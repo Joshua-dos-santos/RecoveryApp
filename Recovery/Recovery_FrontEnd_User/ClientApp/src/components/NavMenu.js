@@ -44,6 +44,9 @@ export class NavMenu extends Component {
                                         <NavLink tag={Link} className="text-light" to="/userInfo">User Info</NavLink>
                                     </NavItem>
                                     <NavItem>
+                                        <NavLink tag={Link} className="text-light" to="/dashboard">User Info</NavLink>
+                                    </NavItem>
+                                    <NavItem>
                                         <NavLink tag={Link} className="text-light" to="/" onClick={() => { sessionStorage.clear(); window.location.reload(false);}}>Logout</NavLink>
                                     </NavItem>
                                 </ul>
