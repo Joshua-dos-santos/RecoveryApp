@@ -133,9 +133,9 @@ export class UserDashboard extends Component {
                             <h1>Current Exercise</h1>
                             <h4>{this.state.exerciseData.name}</h4>
                             <img className="overflow-hidden" style={{ maxHeight: "200px" }} src={this.state.exerciseData.gifUrl} width="auto" height="auto"></img>
-                            <p> Equipment: {this.state.exerciseData.equipment}Kcal<br></br>
-                                Body Part: {this.state.exerciseData.bodyPart}g<br></br>
-                                Target: {this.state.exerciseData.target}g<br></br>
+                            <p> Equipment: {this.state.exerciseData.equipment}<br></br>
+                                Body Part: {this.state.exerciseData.bodyPart}<br></br>
+                                Target: {this.state.exerciseData.target}<br></br>
                             </p>
                         </div>
                     </div>
