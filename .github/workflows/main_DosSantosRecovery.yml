@@ -48,4 +48,4 @@ jobs:
         app-name: 'DosSantosRecovery'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_e450910721f344539fc1cd6db791a288 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cbac5e03b019453380fc4b470670ccd6 }}/joshiiee7/recoverybackend:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cbac5e03b019453380fc4b470670ccd6 }}/recoverybackend:${{ github.sha }}'
