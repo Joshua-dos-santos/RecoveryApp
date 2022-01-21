@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0454cf6b5bfe4ea6bf85160ef54a6302 }}/recoverybackend:${{ github.sha }}
-        file: ./Recovery_BackEnd/Dockerfile
+        file: ./Recovery/Recovery_BackEnd/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
