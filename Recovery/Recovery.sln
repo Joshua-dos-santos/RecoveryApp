@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Backend_Data", "Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_Models", "Recovery_Models\Recovery_Models.csproj", "{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_FrontEnd_User", "Recovery_FrontEnd_User\Recovery_FrontEnd_User.csproj", "{63D6291A-236D-4FCC-B15C-09570E315439}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BE9ED74F-4FAD-463B-8EC3-066A1EB494D0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_UnitTest", "Recovery_UnitTest\Recovery_UnitTest.csproj", "{B59647DC-8DC5-411F-B861-CB688A1B6298}"
@@ -19,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_UnitTest", "Recove
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_FrontEnd_Trainer", "Recovery_FrontEnd_Trainer\Recovery_FrontEnd_Trainer.csproj", "{8C8E7D44-1250-49FB-A154-F87D4D6405D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Recovery_FrontEnd_User", "Recovery_FrontEnd_User\Recovery_FrontEnd_User.csproj", "{3E31E6A1-ACCF-4F9C-9C15-663130481D94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,12 +45,6 @@ Global
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F64CA987-DFC5-404F-AE5C-F8D8B97A2849}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.NoVariablesDefault|Any CPU.Build.0 = Release|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63D6291A-236D-4FCC-B15C-09570E315439}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE9ED74F-4FAD-463B-8EC3-066A1EB494D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE9ED74F-4FAD-463B-8EC3-066A1EB494D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE9ED74F-4FAD-463B-8EC3-066A1EB494D0}.NoVariablesDefault|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +63,12 @@ Global
 		{8C8E7D44-1250-49FB-A154-F87D4D6405D1}.NoVariablesDefault|Any CPU.Build.0 = Debug|Any CPU
 		{8C8E7D44-1250-49FB-A154-F87D4D6405D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C8E7D44-1250-49FB-A154-F87D4D6405D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.NoVariablesDefault|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.NoVariablesDefault|Any CPU.Build.0 = Debug|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E31E6A1-ACCF-4F9C-9C15-663130481D94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
