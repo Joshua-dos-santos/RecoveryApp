@@ -113,7 +113,7 @@ export class UserDashboard extends Component {
         var self = this;
         return (
             <body>
-            <h1>User Dashboard</h1>
+            <h1>Dashboard</h1>
                 <div class="row">
                     <div class="card mx-auto" style={{ backgroundColor: "white", maxWidth: "40%", borderRadius: "25px" }}>
                         <div class="card-body">
